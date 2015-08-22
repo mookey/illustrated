@@ -1,0 +1,190 @@
+@import "media";
+
+.cv-wrapper {
+  color: #999;
+  max-width: 900px;
+
+  header {
+    // border-top: 3px solid #000;
+    // border-bottom: 1px solid #000;
+    // font-family: 'Oswald', sans-serif;
+    border-top: 3px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    font-family: 'Abril Fatface', cursive;
+    font-size: 2rem;
+    color: #ccc;
+  }
+  .timeline-wrapper,
+  aside {
+    display: block;
+    box-sizing: border-box;
+    vertical-align: top;
+    @include tablet {
+      padding-right: 10px;
+      width: 40%;
+      display: inline-block;
+    }
+  }
+
+
+
+  .timeline-wrapper {
+    margin-top: 20px;
+    @include tablet {
+      margin-top: 0;
+      width: 60%;
+    }
+    .name {
+      width: 100%;
+    }
+  }
+
+
+  ul,
+  dl {
+    margin: 14px 0;
+  }
+
+  li {
+    display: block;
+    text-align: left;
+  }
+
+
+
+  dt,
+  dd {
+    margin: 0;
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+  }
+
+  .name,
+  dt {
+    color: #666;
+  }
+
+  .name {
+    display: inline-block;
+    width: 30%
+  }
+
+  dd {
+    width: 70%;
+  }
+}
+
+
+.skills-summary {
+  .points {
+    display: inline-block;
+    width: 70%;
+    ul {
+      margin: 0 0 10px 0;
+    }
+    li {
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      margin-right: 3px;
+      border-radius: 50%;
+      background-color: #eaeaea;
+      &.active {
+        background-color: #ccc;
+        // border: 1px solid #985D5D;
+      }
+    }
+  }
+}
+
+
+.skills-summary,
+.education-summary {
+  margin-top: 20px;
+}
+.education-summary {
+  li {
+    margin: 10px 15px 15px 15px;
+    display: list-item;
+  }
+  div {
+    color: #666;
+    margin-bottom: 3px;
+  }
+}
+
+
+.timeline .text,
+.timeline .year {
+  display: inline-block;
+  width: 20%;
+  vertical-align: top;
+  padding: 20px 0;
+}
+
+.timeline .text {
+  width: calc(80% - 1px);
+  box-sizing: border-box;
+  padding-left: 20px;
+  border-left: 1px solid #bdbdbd;
+}
+
+.timeline {
+  li {
+    box-sizing: border-box;
+  }
+  .name {
+    margin-bottom: 2px;
+  }
+  .year {
+    position: relative;
+    text-align: right;
+    span {
+      display: inline-block;
+      margin-right: 15px;
+      padding: 0 7px 0 0;
+      background-color: #fff;
+      position: relative;
+    }
+    // &:before {
+    //   position: absolute;
+    //   content: "";
+    //   width: 30%;
+    //   height: 1px;
+    //   background-color: #bdbdbd;
+    //   right: -15px;
+    //   top: 50%;
+    //   margin-top: -1px;
+    //   display: none;
+    // }
+    // &:before {
+    //   position: absolute;
+    //   content: "";
+    //   display: block;
+    //   width: 15px;
+    //   height: 15px;
+    //   border-radius: 50%;
+    //   top: 50%;
+    //   margin-top: -9px;
+    //   right: -9px;
+    //   border: 1px solid #bdbdbd;
+    //   background-color: #fff;
+    // }
+    &:after {
+      position: absolute;
+      content: "";
+      display: block;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      top: 50%;
+      margin-top: -6px;
+      right: -6px;
+      border: 1px solid #bdbdbd;
+      background-color: #fff;
+    }
+  }
+
+
+}

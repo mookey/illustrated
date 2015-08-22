@@ -1,0 +1,254 @@
+@import "media";
+@import "mixins";
+
+article {
+  position: relative;
+  margin: 0;
+  box-sizing: border-box;
+  @include vendor-prefix("perspective", "1000px");
+  @include vendor-prefix("transition", "all 300ms ease");
+  margin: 0 0 0 0;
+  @include tablet {
+    color: #555;
+    /*margin: 0 0 1px 0;*/
+  }
+}
+
+/*article:hover {
+  @include tablet {
+    margin: 10px 0;
+  }
+}*/
+
+article:hover .front {
+  color: #fff;
+}
+
+article .front h2 {
+  color: #fff;
+}
+article .front p {
+  color: #fff;
+  @include tablet {
+    @include vendor-prefix("transition", "all 300ms ease");
+    color: #666;
+  }
+}
+article .front .date,
+article .front .tag {
+  color: #999;
+  @include tablet {
+    @include vendor-prefix("transition", "all 300ms ease");
+    color: #666;
+  }
+}
+
+article:hover .front .date,
+article:hover .front .tag {
+  color: #999;
+}
+article:hover .front p {
+  color: #fff;
+}
+
+
+.faded {
+    -webkit-filter: blur(2px);
+    opacity: 0.6;
+  }
+
+.back header {
+  margin-bottom: 50px;
+}
+.front h2 {
+  margin: 0 0 5px 0;
+}
+
+section {
+  padding: 10px 10px 20px 10px;
+  width: auto;
+  position: relative;
+  z-index: 11;
+  box-sizing: border-box;
+
+  /*box-shadow: 0 0 10px -5px #000;*/
+
+  /*tion: all 300ms ease;*/
+  @include tablet {
+    min-height: 350px;
+    width: 55%;
+    padding: 20px;
+  }
+}
+
+.back section {
+  width: 100%;
+  margin-left: 0;
+  padding-bottom: 80px;
+}
+
+.back header {
+  color: #000;
+}
+
+.image {
+  background-repeat: repeat;
+  background-color: #000;
+  background-size: cover;
+  background-position: center;
+  background-image: url('/img/black.png');
+  z-index: 10;
+  width: auto;
+  position: relative;
+  height: 0;
+  padding: 0 0 56.25% 0;
+  box-sizing: border-box;
+  @include vendor-prefix("filter", "brightness(120%)grayscale(60%)");
+  @include vendor-prefix("transition", "all 300ms ease");
+  @include tablet {
+    position: absolute;
+    top: 0;
+    right: -50px;
+    left: auto;
+    width: calc(50% + 50px);
+    height: 100%;
+    padding: 0;
+    @include vendor-prefix("filter", "brightness(200%)grayscale(100%)");
+  }
+  &.inactive {
+    padding: 0 0 0 0;
+  }
+}
+
+/*.active .image {
+  @include tablet {
+    width: calc(45% + 11px);
+    top: 0;
+    height: 100%;
+  }
+}
+*/
+
+article:hover .image {
+  @include vendor-prefix("filter", "brightness(120%)grayscale(60%)");
+  @include tablet {
+/*    width: calc(45% + 11px);
+    top: 0;
+    height: 100%;*/
+  }
+}
+
+article:nth-child(even) {
+  .image {
+    @include tablet {
+      right: auto;
+      left: -50px;
+    }
+  }
+
+  section {
+    @include tablet {
+      margin-left: 45%;
+    }
+  }
+}
+
+article.active section {
+  margin-left: 0;
+}
+
+.flipper {
+  @include vendor-prefix("transition", "all 300ms ease");
+  @include vendor-prefix("transform-style", "preserve-3d");
+  position: relative;
+  height: 100%;
+  @include vendor-prefix("transform-origin", "center left");
+}
+
+.active .flipper {
+  @include vendor-prefix("transform", "rotateY(180deg)");
+  @include vendor-prefix("transform", "translateX(100%)rotateY(180deg)");
+}
+
+.front,
+.back {
+  @include vendor-prefix("backface-visibility", "hidden");
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.front {
+  background-color: #000;
+  z-index: 2;
+  cursor: pointer;
+  /* for firefox 31 */
+  @include vendor-prefix("transform", "rotateY(0deg)");
+  section {
+    background-color: #000;
+    /*border: 1px solid #000;*/
+  }
+  a {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.9rem;
+    margin: 0;
+  }
+}
+
+.active .front,
+.back {
+  position: absolute;
+}
+
+.back {
+  @include vendor-prefix("transform", "rotateY(180deg)");
+  box-sizing: border-box;
+  /*padding: 10px;*/
+  @include tablet {
+    /*padding: 20px;*/
+  }
+}
+
+
+.placeholder .front,
+.placeholder .back {
+  position: relative;
+}
+
+
+
+.note {
+  padding: 5px 10px;
+  font-family: 'Oswald', sans-serif;
+  color: #000;
+  font-size: 1rem;
+  border-left: 5px solid #1DBBC8;
+  @include tablet {
+    display: inline-block;
+    max-width: 200px;
+    float: right;
+    margin: 0 0 20px 20px;
+    &.odd {
+      float: right;
+      margin: 10px 0 20px 20px;
+    }
+    &.even {
+      float: left;
+      border-right: 5px solid #1DBBC8;
+      border-left: none;
+      margin: 10px 30px 20px 0;
+      text-align: right;
+    }
+  }
+  @include desktop {
+    &.odd {
+      margin: 10px -80px 20px 30px;
+    }
+    &.even {
+      margin: 10px 30px 20px -70px;
+    }
+  }
+}
+
+

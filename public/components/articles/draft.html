@@ -1,0 +1,48 @@
+
+{{#each articles}}
+  <article data-article="true">
+    <div class="flipper">
+      <div class="front">
+        <div class="image invisible" data-image-src="{{ media.0.src }}"></div>
+        <section>
+          <header>
+            <div>
+              <span class="date">{{date}}</span>
+              <h2>{{header}}</h2>
+              <div class="sub-header">
+                <span class="tag">av {{author}}</span>
+              </div>
+            </div>
+            <p>
+             {{extract}}
+            </p>
+            <span class="btn">Läs mer</span>
+          </header>
+        </section>
+      </div>
+      <div class="back">
+        <section>
+          <header>
+            <div>
+              <span class="date">{{date}}</span>
+              <h2>{{header}}</h2>
+              <div class="sub-header">
+                <span class="tag">av {{author}}</span>
+              </div>
+            </div>
+            <p>
+             {{extract}}
+            </p>
+          </header>
+          <p>{{extract}}</p>
+          <div class="note odd">Well, I'm pissed an vinigera again, Cause I think that I've lost my best friend</div>
+          <p>{{extract}}{{extract}}</p>
+          <p>{{extract}}<a href="">fucker</a>{{extract}}</p>
+          <p>{{extract}}{{extract}}</p>
+          <div class="note even">Well, I'm pissed an vinigera again, Cause I think that I've lost my best friend</div>
+          <p>{{extract}}{{extract}}</p>
+        </section>
+      </div>
+    </div>
+  </article>
+{{/each}}

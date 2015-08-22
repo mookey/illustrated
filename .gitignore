@@ -1,0 +1,5 @@
+node_modules
+.sass-cache
+public/js/libs
+public/dist/*
+public/img

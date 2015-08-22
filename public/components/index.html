@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+      <title>Garhammar</title>
+      <link href='/bower_components/normalize.css/normalize.css' rel='stylesheet' type='text/css'>
+      <link href='https://fonts.googleapis.com/css?family=Wire+One|Varela+Round|Oswald:300|Abril+Fatface' rel='stylesheet' type='text/css'>
+      <link href='/dist/style/style.css' rel='stylesheet' type='text/css'>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/basket.js/0.5.2/basket.full.min.js"></script>
+      <script src="/dist/script.js"></script>
+  </head>
+  <body>
+    <div id="main" class="{{ pane }}" data-active-class="{{ pane }}">
+      <h1 class="logo">Garhammar</h1>
+      <div class="placeholder"><article></article></div>
+      <div class="top split">
+        <div>Garhammar illustrated</div
+        ><div class="text-right">12 juli 2015</div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="" class="{{#ifEqual pane 'blog'}}active{{/ifEqual}}" data-nav-link="blog">BLOG</a></li
+          ><li><a href="" class="{{#ifEqual pane 'cv'}}active{{/ifEqual}}" data-nav-link="cv">CV</a></li>
+          <!-- ><li><a href="" class="{{#ifEqual pane 'oland'}}active{{/ifEqual}}" data-nav-link="oland">ÖLAND</a></li> -->
+        </ul>
+      </nav>
+      {{{ body }}}
+    </div>
+  </body>
+</html>
