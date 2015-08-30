@@ -1,8 +1,7 @@
 module.exports = {
-  server      : __dirname + '/',
-  public      : __dirname + '/../public/',
-  models      : __dirname + '/models/',
-  views       : __dirname + '/../public/',
-  components  : __dirname + '/../public/components/',
-  PORT        : 5000
-}
+  server      : global.root + '/server/',
+  public      : global.root + '/public/',
+  models      : global.root + '/server/models/',
+  views       : global.root + '/public/',
+  components  : global.root + '/public/components/'
+};
