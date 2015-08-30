@@ -240,9 +240,8 @@ article.active section {
 
 .note {
   padding: 5px 10px;
-  font-family: 'Oswald', sans-serif;
   color: #000;
-  font-size: 1rem;
+  font-size: 1.3rem;
   border-left: 5px solid #1DBBC8;
   @include tablet {
     display: inline-block;

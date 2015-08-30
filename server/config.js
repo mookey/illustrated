@@ -5,7 +5,11 @@ var exphbs        = require('express-handlebars');
 var handlebars    = require('handlebars');
 var compress      = require('compression')();
 var session       = require('express-session');
-
+var fs            = require('fs');
+var PROD          = 'production';
+var DEV           = 'development';
+var conf;
+var name;
 
 module.exports = function(app) {
 
@@ -30,17 +34,16 @@ module.exports = function(app) {
       app.set('view engine', '.html');
   }
 
-  switch (process.env.NODE_ENV) {
-    case 'production':
-      setDefaults(app);
-      break;
-    case 'development':
-      setDefaults(app);
-      break;
-    default:
-      setDefaults(app);
-      break;
+  if (process.env.NODE_ENV === PROD) {
+    name = 'production.json';
+  } else {
+    name = 'development.json';
   }
 
+  /*jslint stupid: true */
+  conf = JSON.parse(fs.readFileSync(global.root + '/' + name, 'utf8'));
+  /*jslint stupid: false */
+  global.conf = conf;
+  setDefaults(app);
 
 };

@@ -2,6 +2,9 @@ var express = require('express');
 var app     = express();
 
 global.root = __dirname;
+
+console.log('process.env', process.env);
+
 global.env = require(global.root + '/server/env.js');
 
 console.log('global', global.env);
@@ -18,4 +21,4 @@ require('./server/config/errors.js')(app);*/
 
 // console.log('port',process.env.PORT);
 
-app.listen(global.env.PORT);
+app.listen(global.conf.PORT);

@@ -3,3 +3,8 @@ node_modules
 public/js/libs
 public/dist/*
 public/img
+production.json
+development.json
+init.sh
+clean.sh
+deploy.sh

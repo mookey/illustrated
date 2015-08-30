@@ -17,13 +17,13 @@ header > div {
   display: inline-block;
 }
 
+.note,
 header p {
   font-family: 'Wire One', sans-serif;
   font-size: 1.4rem;
   margin-bottom: 15px;
-  @include tablet {
-    letter-spacing: 0.05rem;
-  }
+  letter-spacing: 0.06rem;
+  line-height: 1.5rem;
 }
 
 body {
@@ -200,6 +200,7 @@ body {
 
 p {
   margin: 15px 0 5px 0;
+  line-height: 1.2rem;
 }
 
 .invisible {
@@ -273,7 +274,7 @@ nav ul {
 .btn,
 a {
   display: inline-block;
-  padding: 0 6px;
+  padding: 0 10px;
   margin: 0 4px;
   border-bottom: 1px solid #ffed00;
   text-decoration: none;
