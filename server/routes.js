@@ -14,7 +14,8 @@ module.exports = function(app) {
 
   app.get('/:pane?', function (req, res) {
     var data = [];
-    var host = 'https://googledrive.com/host/0B6HtzsiMSfisfl9IVHZ2RUYzZ2lzOG53MzNmUUg3clkxWUZLUjBfUjN3eTVHVlBlZ0tVSmM/';
+    // var host = 'https://googledrive.com/host/0B6HtzsiMSfisfl9IVHZ2RUYzZ2lzOG53MzNmUUg3clkxWUZLUjBfUjN3eTVHVlBlZ0tVSmM/';
+    var host ='img/';
     var pane;
 
 
