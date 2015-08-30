@@ -2,11 +2,20 @@
 
 module.exports = function(app) {
 
+
+  function r(req, res, data) {
+    if (req.xhr) {
+      res.send(data);
+      return;
+    }
+    res.render('body', data);
+  }
+
+
   app.get('/:pane?', function (req, res) {
     var data = [];
     var host = 'https://googledrive.com/host/0B6HtzsiMSfisfl9IVHZ2RUYzZ2lzOG53MzNmUUg3clkxWUZLUjBfUjN3eTVHVlBlZ0tVSmM/';
     var pane;
-
 
 
     data.push({
@@ -16,13 +25,14 @@ module.exports = function(app) {
       header  : '...but as for me, give me liberty, or give me death!',
       extract : 'Is life so dear, or peace so sweet, as to be purchased at the price of chains and slavery? Forbid it, Almighty God! I know not what course others may take; but as for me, give me liberty, or give me death!',
       media   : [{
-          src     : host + 'byrum_.jpg',
+          src     : host + 'byrum.jpg',
           type    : 'image',
           view    : 'portrait',
           width   : 800,
           height  : 1092
       }]
     });
+
 
     data.push({
       text    : '<p>I am not included within the pale of this glorious anniversary! Your high independence only reveals the immeasurable distance between us. The blessings in which you this day rejoice are not enjoyed in common. The rich inheritance of justice, liberty, prosperity, and independence bequeathed by your fathers is shared by you, not by me. The sunlight that brought life and healing to you has brought stripes and death to me. This Fourth of July is yours, not mine. Youmay rejoice, I must mourn. To drag a man in fetters into the grand illuminated temple of liberty, and call upon him to join you in joyous anthems, were inhuman mockery and sacrilegious irony. Do you mean, citizens, to mock me, by asking me to speak today?</p>',
@@ -69,22 +79,20 @@ module.exports = function(app) {
       }]
     });
 
-
-    pane = req.params.pane ? req.params.pane : 'blog';
-    pane = pane.toLowerCase();
-    res.render('body', {
-      pane      : pane,
-      articles  : data
+    data.forEach(function(item, i) {
+      item.index = i;
+      item.even = (i % 2 === 0);
+      item.odd = !item.even;
     });
-    return;
-  });
 
-  function r(req, res) {
-    if (req.xhr) {
-      res.send(req.locals);
-      return;
-    }
-    res.render('site/' + req.locals.template, req.locals);
-  }
+
+    pane = req.params.pane || 'blog';
+    pane = pane.toLowerCase();
+
+    r(req, res, {
+      pane  : pane,
+      posts : data
+    });
+  });
 
 };

@@ -1,4 +1,19 @@
 @import "media";
+@import "mixins";
+
+.touch .cv-wrapper {
+  color: #666;
+}
+
+.touch {
+  dt {
+    color: #000;
+  }
+  .name {
+    color: #000;
+  }
+
+}
 
 .cv-wrapper {
   color: #999;
@@ -8,25 +23,52 @@
     // border-top: 3px solid #000;
     // border-bottom: 1px solid #000;
     // font-family: 'Oswald', sans-serif;
-    border-top: 3px solid #ccc;
-    border-bottom: 1px solid #ccc;
     font-family: 'Abril Fatface', cursive;
     font-size: 2rem;
+    border-top: 3px solid #ccc;
+    border-bottom: 1px solid #ccc;
     color: #ccc;
   }
+
+  .active header {
+    border-top: 3px solid #000;
+    border-bottom: 1px solid #000;
+    color: #000;
+  }
+
   .timeline-wrapper,
   aside {
     display: block;
     box-sizing: border-box;
     vertical-align: top;
     @include tablet {
-      padding-right: 10px;
       width: 40%;
       display: inline-block;
     }
+
+    .image {
+      padding-bottom: 82.85%;
+      width: 100%;
+      height: 0;
+      position: relative;
+      @include vendor-prefix("filter", "brightness(170%)grayscale(100%)");
+    }
+    .active .image {
+      @include vendor-prefix("filter", "brightness(110%)grayscale(0%)");
+    }
   }
 
+  .highlight {
+    @include vendor-prefix("transition", "all 300ms ease");
+  }
 
+  .highlight.inactive {
+    opacity: 0.3;
+  }
+
+  .highlight.active {
+    color: #000;
+  }
 
   .timeline-wrapper {
     margin-top: 20px;
@@ -36,13 +78,25 @@
     }
     .name {
       width: 100%;
+      font-size: 1.1rem;
+    }
+    &:hover header {
+      color: #000 !important;
+      border-top: 3px solid #000 !important;
+      border-bottom: 1px solid #000 !important;
+      opacity: 1;
     }
   }
 
 
   ul,
   dl {
-    margin: 14px 0;
+    margin: 14px 0 0 0;
+  }
+
+  .timeline ul {
+    margin: 0;
+    padding-top: 14px;
   }
 
   li {
@@ -58,12 +112,9 @@
     display: inline-block;
     width: 30%;
     vertical-align: top;
+    margin-bottom: 5px;
   }
 
-  .name,
-  dt {
-    color: #666;
-  }
 
   .name {
     display: inline-block;
@@ -96,21 +147,53 @@
       }
     }
   }
+  &.active {
+    .points {
+      li {
+        background-color: #ccc;
+        &.active {
+          background-color: #EFA0A0;
+        }
+      }
+    }
+  }
+}
+
+.biography {
+  padding-top: 40px;
+  @include tablet {
+    p {
+      margin: 25px 0 15px 0;
+      max-width: 600px;
+    }
+  }
 }
 
 
 .skills-summary,
 .education-summary {
-  margin-top: 20px;
+  padding-top: 40px;
 }
+
+.skills-summary,
+.education-summary,
+.person-summary {
+  @include tablet {
+    padding-right: 10px;
+  }
+}
+
 .education-summary {
   li {
     margin: 10px 15px 15px 15px;
     display: list-item;
   }
   div {
-    color: #666;
     margin-bottom: 3px;
+  }
+  .name {
+    display: block;
+    color: #000;
   }
 }
 
@@ -128,6 +211,7 @@
   box-sizing: border-box;
   padding-left: 20px;
   border-left: 1px solid #bdbdbd;
+  margin-top: -2px;
 }
 
 .timeline {

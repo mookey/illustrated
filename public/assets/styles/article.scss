@@ -8,17 +8,26 @@ article {
   @include vendor-prefix("perspective", "1000px");
   @include vendor-prefix("transition", "all 300ms ease");
   margin: 0 0 0 0;
+  max-width: 800px;
   @include tablet {
     color: #555;
-    /*margin: 0 0 1px 0;*/
+    section {
+      margin-left: 45%;
+    }
+    .image {
+      left: 0;
+    }
+    &:nth-child(odd) {
+      margin-left: 100px;
+      section {
+        margin-left: 0;
+      }
+      .image {
+        left: 55%;
+      }
+    }
   }
 }
-
-/*article:hover {
-  @include tablet {
-    margin: 10px 0;
-  }
-}*/
 
 article:hover .front {
   color: #fff;
@@ -43,6 +52,17 @@ article .front .tag {
   }
 }
 
+.touch {
+  article .front .date,
+  article .front .tag {
+    color: #999;
+  }
+  article .front p,
+  article .front h2 {
+    color: #fff;
+  }
+}
+
 article:hover .front .date,
 article:hover .front .tag {
   color: #999;
@@ -52,11 +72,6 @@ article:hover .front p {
 }
 
 
-.faded {
-    -webkit-filter: blur(2px);
-    opacity: 0.6;
-  }
-
 .back header {
   margin-bottom: 50px;
 }
@@ -64,22 +79,23 @@ article:hover .front p {
   margin: 0 0 5px 0;
 }
 
+
+
+
 section {
   padding: 10px 10px 20px 10px;
   width: auto;
   position: relative;
   z-index: 11;
   box-sizing: border-box;
-
-  /*box-shadow: 0 0 10px -5px #000;*/
-
-  /*tion: all 300ms ease;*/
   @include tablet {
     min-height: 350px;
     width: 55%;
     padding: 20px;
   }
 }
+
+
 
 .back section {
   width: 100%;
@@ -91,26 +107,30 @@ section {
   color: #000;
 }
 
+
+
 .image {
-  background-repeat: repeat;
-  background-color: #000;
   background-size: cover;
   background-position: center;
-  background-image: url('/img/black.png');
+  @include vendor-prefix("transition", "all 300ms ease");
+  background-color: #eee;
+}
+
+.blog .image {
   z-index: 10;
   width: auto;
   position: relative;
   height: 0;
   padding: 0 0 56.25% 0;
   box-sizing: border-box;
+  background-color: #000;
   @include vendor-prefix("filter", "brightness(120%)grayscale(60%)");
-  @include vendor-prefix("transition", "all 300ms ease");
   @include tablet {
     position: absolute;
     top: 0;
-    right: -50px;
-    left: auto;
-    width: calc(50% + 50px);
+    width: 45%;
+    // right: -50px;
+    // left: auto;
     height: 100%;
     padding: 0;
     @include vendor-prefix("filter", "brightness(200%)grayscale(100%)");
@@ -138,20 +158,20 @@ article:hover .image {
   }
 }
 
-article:nth-child(even) {
-  .image {
-    @include tablet {
-      right: auto;
-      left: -50px;
-    }
-  }
-
-  section {
-    @include tablet {
-      margin-left: 45%;
-    }
-  }
-}
+// article:nth-child(even) {
+//   .image {
+//     @include tablet {
+//       right: auto;
+//       left: -50px;
+//     }
+//   }
+//
+//   section {
+//     @include tablet {
+//       margin-left: 45%;
+//     }
+//   }
+// }
 
 article.active section {
   margin-left: 0;
