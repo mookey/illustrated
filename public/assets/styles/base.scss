@@ -13,15 +13,12 @@ h2 {
   }
 }
 
-header > div {
-  display: inline-block;
-}
+
 
 .note,
 header p {
   font-family: 'Wire One', sans-serif;
   font-size: 1.4rem;
-  margin-bottom: 15px;
   letter-spacing: 0.06rem;
   line-height: 1.5rem;
 }
@@ -43,12 +40,10 @@ body {
   font-family: 'Oswald', sans-serif;
   color: #999;
   font-size: 0.8rem;
-  display: inline-block;
   width: 100%;
 }
 
 .sub-header > span {
-  display: inline-block;
   vertical-align: top;
   padding: 2px 4px;
 }
@@ -199,7 +194,7 @@ body {
 
 
 p {
-  margin: 15px 0 5px 0;
+  margin: 20px 0 15px 0;
   line-height: 1.2rem;
 }
 

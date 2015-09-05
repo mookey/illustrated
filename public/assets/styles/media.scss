@@ -23,7 +23,7 @@ $wide: 1600px;
 }
 
 @mixin wide {
-  @media (min-width: #{$tablet}) {
+  @media (min-width: #{$wide}) {
     @content;
   }
 }

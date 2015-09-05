@@ -2,12 +2,7 @@ var express = require('express');
 var app     = express();
 
 global.root = __dirname;
-
-console.log('process.env', process.env);
-
 global.env = require(global.root + '/server/env.js');
-
-console.log('global', global.env);
 
 require(global.env.server + 'config.js')(app);
 require(global.env.server + 'routes.js')(app);
