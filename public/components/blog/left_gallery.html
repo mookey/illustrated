@@ -1,0 +1,39 @@
+<section>
+  <header>
+    <div class="image-container image-left">
+      <div style="position: relative; padding-bottom:{{media.0.aspect}}%">
+        <div class="image invisible" data-image-src="{{media.0.src}}"></div>
+      </div>
+    </div>
+    <div>
+      <span class="date">{{humanDate}}</span>
+      <h2>{{header}}</h2>
+      <div class="sub-header">
+        <span class="tag">av {{author}}</span>
+      </div>
+    </div>
+    <p>
+     {{extract}}
+    </p>
+  </header>
+  {{{ text }}}
+  <div class="row gallery">
+
+    <div>
+      <div class="image-container block">
+        <div style="position: relative; width:100%; padding-bottom:{{media.1.aspect}}%">
+          <div class="image invisible" data-image-src="{{media.1.src}}"></div>
+        </div>
+      </div>
+    </div
+    ><div>
+      <div class="image-container block">
+        <div style="position: relative; width:100%; padding-bottom:{{media.2.aspect}}%">
+          <div class="image invisible" data-image-src="{{media.2.src}}"></div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</section>

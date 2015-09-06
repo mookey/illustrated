@@ -2,9 +2,7 @@
   <div class="flipper">
     <div class="front">
 
-
       <div class="image invisible" data-image-src="{{ media.0.src }}"></div>
-
       <section>
         <header>
           <div>
@@ -21,31 +19,21 @@
         </header>
       </section>
 
-
     </div>
 
 
 
 
     <div class="back clearfix">
-      <section>
-        <header>
-          {{#if headerImage}}
-            {{{headerImage}}}
-          {{/if}}
-          <div>
-            <span class="date">{{humanDate}}</span>
-            <h2>{{header}}</h2>
-            <div class="sub-header">
-              <span class="tag">av {{author}}</span>
-            </div>
-          </div>
-          <p>
-           {{extract}}
-          </p>
-        </header>
-        {{{ text }}}
-      </section>
+
+      {{#ifEqual template 'left_gallery'}}
+        {{> blog/left_gallery}}
+      {{/ifEqual}}
+
+      {{#ifEqual template 'left_bottom'}}
+        {{> blog/left_bottom}}
+      {{/ifEqual}}
+
     </div>
   </div>
 </article>

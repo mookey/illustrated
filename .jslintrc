@@ -1,4 +1,15 @@
 {
-  "onevar"  : false,
-  "node"    : true
+  "vars"      : true,
+  "node"      : true,
+  "white"     : true,
+  "browser"   : true,
+  "nomen"     : true,
+  "plusplus"  : true,
+  "predef": [
+    "basket",
+    "Hammer",
+    "window",
+    "PubSub",
+    "smoothScroll"
+  ]
 }

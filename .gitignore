@@ -3,6 +3,7 @@ node_modules
 public/js/libs
 public/dist/*
 public/img
+public/images
 production.json
 development.json
 init.sh
