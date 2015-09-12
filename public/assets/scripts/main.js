@@ -21,7 +21,7 @@ this.consi = this.consi || {};
 
   }
 
-  
+
   function init() {
 
     var supportsOrientationChange;
@@ -133,6 +133,8 @@ this.consi = this.consi || {};
     index++;
     consi.move(index);
   };
+
+
 
   consi.move = function(index) {
     if (consi.isMoving) {

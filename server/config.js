@@ -10,6 +10,7 @@ var PROD          = 'production';
 var DEV           = 'development';
 var conf;
 var name;
+var buildRev;
 
 module.exports = function(app) {
 
@@ -36,9 +37,30 @@ module.exports = function(app) {
 
   if (process.env.NODE_ENV === PROD) {
     name = 'production.json';
+    /*jslint stupid: true */
+    buildRev = JSON.parse(fs.readFileSync(global.env.dist + 'rev-manifest.json', 'utf8'));
+    /*jslint stupid: false */
+    global.env.build = {
+      css   : '/dist/' + buildRev['style.css'],
+      js    : '/dist/' + buildRev['main.js'],
+      path  : '/dist/js/'
+    };
   } else {
     name = 'development.json';
+    global.env.build = {
+      css   : '/assets/styles/style.css',
+      js    : '/assets/scripts/main.js',
+      path  : '/components/'
+    };
   }
+
+  app.use(function (req, res, next) {
+    req.locals      = {};
+    req.locals.js   = global.env.build.js;
+    req.locals.css  = global.env.build.css;
+    req.locals.path = global.env.build.path;
+    next();
+  });
 
   /*jslint stupid: true */
   conf = JSON.parse(fs.readFileSync(global.root + '/' + name, 'utf8'));

@@ -18,7 +18,7 @@ module.exports = function(app) {
   // }
 
   app.get('/:pane?', function (req, res) {
-    var data = [];
+    var posts = [];
     var host ='images/';
     var pane;
     var now;
@@ -28,7 +28,7 @@ module.exports = function(app) {
 
 
 
-    data.push({
+    posts.push({
       text    : '<p></p>',
       author  : 'consiglieri',
       date    : new Date(2015, 8, 5),
@@ -70,7 +70,7 @@ module.exports = function(app) {
     });
 
 
-    data.push({
+    posts.push({
       text    : '<p></p>',
       author  : 'consiglieri',
       date    : new Date(2015, 8, 4),
@@ -99,7 +99,7 @@ module.exports = function(app) {
     });
 
 
-    data.sort(function(a, b) {
+    posts.sort(function(a, b) {
       if (a.date > b.date) {
         return -1;
       }
@@ -113,11 +113,11 @@ module.exports = function(app) {
     pane = req.params.pane || 'blog';
     pane = pane.toLowerCase();
 
-    r(req, res, {
-      pane  : pane,
-      posts : data,
-      now   : now
-    });
+    req.locals.pane   = pane;
+    req.locals.posts  = posts;
+    req.locals.now    = now;
+    console.log(req.locals);
+    r(req, res, req.locals);
   });
 
 };

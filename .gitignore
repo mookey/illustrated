@@ -2,6 +2,7 @@ node_modules
 .sass-cache
 public/js/libs
 public/dist/*
+public/assets/**/*.css
 public/img
 public/images
 production.json
