@@ -2,7 +2,7 @@
 @import "mixins";
 
 .touch .cv-wrapper {
-  color: #666;
+  color: #333;
 }
 
 .touch {
@@ -28,6 +28,12 @@
     border-top: 3px solid #ccc;
     border-bottom: 1px solid #ccc;
     color: #ccc;
+  }
+
+  .touch .cv-wrapper header {
+    border-top: 3px solid #333;
+    border-bottom: 1px solid #333;
+    color: #333;
   }
 
   .active header {

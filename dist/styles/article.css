@@ -1,0 +1,348 @@
+.touch .not-mobile {
+  display: none; }
+
+article {
+  position: relative;
+  margin: 0;
+  box-sizing: border-box;
+  -webkit-perspective: 1000px;
+  -ms-perspective: 1000px;
+  -moz-perspective: 1000px;
+  -o-perspective: 1000px;
+  perspective: 1000px;
+  -webkit-transition: all 300ms ease;
+  -ms-transition: all 300ms ease;
+  -moz-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+  transition: all 300ms ease;
+  margin: 0 0 0 0;
+  max-width: 800px; }
+  @media (min-width: 768px) {
+    article {
+      color: #555; }
+      article section {
+        margin-left: 45%; }
+      article .front .image {
+        left: 0; }
+      article:nth-child(odd) section {
+        margin-left: 0; }
+      article:nth-child(odd) .front .image {
+        left: 55%; } }
+  @media (min-width: 1024px) {
+    article:nth-child(odd) {
+      margin-left: 100px; } }
+
+article:hover .front {
+  color: #fff; }
+
+article .front h2 {
+  color: #fff; }
+
+article .front p {
+  color: #fff; }
+  @media (min-width: 768px) {
+    article .front p {
+      -webkit-transition: all 300ms ease;
+      -ms-transition: all 300ms ease;
+      -moz-transition: all 300ms ease;
+      -o-transition: all 300ms ease;
+      transition: all 300ms ease;
+      color: #666; } }
+
+article .front .date,
+article .front .tag {
+  color: #999; }
+  @media (min-width: 768px) {
+    article .front .date,
+    article .front .tag {
+      -webkit-transition: all 300ms ease;
+      -ms-transition: all 300ms ease;
+      -moz-transition: all 300ms ease;
+      -o-transition: all 300ms ease;
+      transition: all 300ms ease;
+      color: #666; } }
+
+.gallery {
+  display: block;
+  box-sizing: border-box;
+  padding: 10px; }
+
+.image-container {
+  box-shadow: 0 0 10px -3px #000;
+  width: 100%;
+  margin: 10px auto;
+  padding: 10px;
+  box-sizing: border-box;
+  position: relative; }
+  .image-container > div {
+    height: 0;
+    width: 100%; }
+  .image-container .image {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute; }
+
+@media (min-width: 768px) {
+  .gallery > div {
+    display: inline-block;
+    width: 50%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 10px; }
+  .image-container {
+    width: 40%; }
+    .image-container.image-left {
+      float: left;
+      margin: 0 20px 10px 0; }
+    .image-container.image-right {
+      float: right;
+      margin: 0 0 10px 20px; }
+    .image-container.block {
+      width: 100%; }
+    .image-container.inline-block {
+      margin: 0;
+      display: inline-block;
+      width: 33%; } }
+
+@media (min-width: 1024px) {
+  .image-container {
+    width: 40%; }
+    .image-container.image-left {
+      float: left;
+      margin: 0 20px 20px -60px; }
+    .image-container.image-right {
+      float: right;
+      margin: 0 -60px 20px 20px; } }
+
+@media (min-width: 1600px) {
+  .image-container.image-left {
+    margin: 0 20px 20px -120px; }
+  .image-container.image-right {
+    margin: 0 -120px 20px 20px; } }
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0; }
+
+.touch article .front .date,
+.touch article .front .tag {
+  color: #999; }
+
+.touch article .front p,
+.touch article .front h2 {
+  color: #fff; }
+
+article:hover .front .date,
+article:hover .front .tag {
+  color: #999; }
+
+article:hover .front p {
+  color: #fff; }
+
+.back h2,
+.front h2 {
+  margin: 0; }
+
+iframe {
+  display: block;
+  margin-bottom: 5px; }
+
+section {
+  padding: 10px 10px 20px 10px;
+  width: auto;
+  position: relative;
+  z-index: 11;
+  box-sizing: border-box; }
+  @media (min-width: 768px) {
+    section {
+      min-height: 350px;
+      width: 55%;
+      padding: 20px; } }
+
+.back section {
+  width: 100%;
+  margin-left: 0;
+  padding-bottom: 80px; }
+
+.back header {
+  color: #000; }
+
+.row {
+  margin: 0;
+  clear: both; }
+
+.image {
+  background-size: cover;
+  background-position: center;
+  -webkit-transition: all 300ms ease;
+  -ms-transition: all 300ms ease;
+  -moz-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+  transition: all 300ms ease;
+  background-color: #eee; }
+
+.image {
+  z-index: 10;
+  width: auto;
+  position: relative;
+  height: 0;
+  padding: 0 0 56.25% 0;
+  box-sizing: border-box; }
+  .image.inactive {
+    padding: 0 0 0 0; }
+
+.front .image {
+  background-color: #000;
+  -webkit-filter: brightness(120%)grayscale(60%);
+  -ms-filter: brightness(120%)grayscale(60%);
+  -moz-filter: brightness(120%)grayscale(60%);
+  -o-filter: brightness(120%)grayscale(60%);
+  filter: brightness(120%)grayscale(60%); }
+  @media (min-width: 768px) {
+    .front .image {
+      position: absolute;
+      top: 0;
+      width: 45%;
+      height: 100%;
+      padding: 0;
+      -webkit-filter: brightness(200%)grayscale(100%);
+      -ms-filter: brightness(200%)grayscale(100%);
+      -moz-filter: brightness(200%)grayscale(100%);
+      -o-filter: brightness(200%)grayscale(100%);
+      filter: brightness(200%)grayscale(100%); } }
+
+/*.active .image {
+  @include tablet {
+    width: calc(45% + 11px);
+    top: 0;
+    height: 100%;
+  }
+}
+*/
+article:hover .front .image {
+  -webkit-filter: brightness(120%)grayscale(60%);
+  -ms-filter: brightness(120%)grayscale(60%);
+  -moz-filter: brightness(120%)grayscale(60%);
+  -o-filter: brightness(120%)grayscale(60%);
+  filter: brightness(120%)grayscale(60%); }
+
+article:hover .front .image {
+  /*    width: calc(45% + 11px);
+    top: 0;
+    height: 100%;*/ }
+
+article.active section {
+  margin-left: 0; }
+
+.flipper {
+  -webkit-transition: all 300ms ease;
+  -ms-transition: all 300ms ease;
+  -moz-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+  transition: all 300ms ease;
+  -webkit-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  position: relative;
+  height: 100%;
+  -webkit-transform-origin: center left;
+  -ms-transform-origin: center left;
+  -moz-transform-origin: center left;
+  -o-transform-origin: center left;
+  transform-origin: center left; }
+
+.active .flipper {
+  -webkit-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+  -webkit-transform: translateX(100%)rotateY(180deg);
+  -ms-transform: translateX(100%)rotateY(180deg);
+  -moz-transform: translateX(100%)rotateY(180deg);
+  -o-transform: translateX(100%)rotateY(180deg);
+  transform: translateX(100%)rotateY(180deg); }
+
+.front,
+.back {
+  -webkit-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; }
+
+.front {
+  background-color: #000;
+  z-index: 2;
+  cursor: pointer;
+  /* for firefox 31 */
+  -webkit-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg);
+  -moz-transform: rotateY(0deg);
+  -o-transform: rotateY(0deg);
+  transform: rotateY(0deg); }
+  .front section {
+    background-color: #000;
+    /*border: 1px solid #000;*/ }
+  .front a {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.9rem;
+    margin: 0; }
+
+.active .front,
+.back {
+  position: absolute; }
+
+.back {
+  -webkit-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+  box-sizing: border-box;
+  /*padding: 10px;*/ }
+
+.back {
+  /*padding: 20px;*/ }
+
+.placeholder .front,
+.placeholder .back {
+  position: relative; }
+
+.note {
+  padding: 5px 10px;
+  color: #000;
+  font-size: 1.3rem;
+  border-left: 5px solid #1DBBC8; }
+  @media (min-width: 768px) {
+    .note {
+      display: inline-block;
+      max-width: 200px;
+      float: right;
+      margin: 0 0 20px 20px; }
+      .note.odd {
+        float: right;
+        margin: 10px 0 20px 20px; }
+      .note.even {
+        float: left;
+        border-right: 5px solid #1DBBC8;
+        border-left: none;
+        margin: 10px 30px 20px 0;
+        text-align: right; } }
+  @media (min-width: 1024px) {
+    .note.odd {
+      margin: 10px -80px 20px 30px; }
+    .note.even {
+      margin: 10px 30px 20px -70px; } }

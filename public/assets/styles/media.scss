@@ -27,3 +27,7 @@ $wide: 1600px;
     @content;
   }
 }
+
+.touch .not-mobile {
+  display: none;
+}
