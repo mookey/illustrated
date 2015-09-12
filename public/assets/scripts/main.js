@@ -120,6 +120,7 @@ this.consi = this.consi || {};
     if (index === 0) {
       return;
     }
+    setScrollOffset(activeClass);
     index--;
     consi.move(index);
   };
@@ -130,23 +131,33 @@ this.consi = this.consi || {};
     if (index >= (consi.navLinks.length - 1)) {
       return;
     }
+    setScrollOffset(activeClass);
     index++;
     consi.move(index);
   };
 
+  function setScrollOffset(cls) {
+    var doc = document.documentElement;
+    consi[cls].scrollTop = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+  }
+
 
 
   consi.move = function(index) {
+    var cls;
     if (consi.isMoving) {
       return;
     }
     consi.isMoving = true;
+    cls = consi.getMappingByIndex(index);
     consi.removeActiveClass();
-    consi.setActiveClass(consi.getMappingByIndex(index));
-    consi.initiateComponent(consi.getMappingByIndex(index));
+    consi.setActiveClass(cls);
+    consi.initiateComponent(cls);
     setTimeout(function() {
       consi.isMoving = false;
-    }, 600);
+      document.getElementById('top-indicator').style.top = ((consi[cls].scrollTop || 0) - 20) + 'px';
+      smoothScroll.animateScroll( null, '#top-indicator' );
+    }, 610);
     //
     // setTimeout(function() {
     //   smoothScroll.animateScroll( null, '#main' );

@@ -1,7 +1,7 @@
 'use strict';
 
 window.consi = window.consi || {};
-window.consi.cv = {};
+window.consi.cv = window.consi.cv || {};
 
 (function(consi) {
   var c = window.consi.cv;

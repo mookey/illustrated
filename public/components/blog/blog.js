@@ -1,7 +1,7 @@
 'use strict';
 
 window.consi = window.consi || {};
-window.consi.blog = {};
+window.consi.blog = window.consi.blog || {};
 
 (function(consi) {
   var c = window.consi.blog;

@@ -116,7 +116,7 @@ module.exports = function(app) {
     req.locals.pane   = pane;
     req.locals.posts  = posts;
     req.locals.now    = now;
-    console.log(req.locals);
+
     r(req, res, req.locals);
   });
 
