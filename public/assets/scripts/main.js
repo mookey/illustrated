@@ -55,8 +55,7 @@ this.consi = this.consi || {};
       }, false);
     });
 
-
-    if (consi.isTouchDevice()) {
+    function addTouch() {
       root.classList.add('touch');
       basket
         .require({ url: 'https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.4/hammer.min.js', key: 'Hammer', unique: '1' })
@@ -70,7 +69,9 @@ this.consi = this.consi || {};
             consi.moveLeft();
           });
         });
-    } else {
+    }
+
+    function addKeyboard() {
       root.classList.add('keyboard');
       window.addEventListener('keydown', function(ev){
         var key         = ev.keyCode;
@@ -83,6 +84,17 @@ this.consi = this.consi || {};
           return;
         }
       }, false);
+    }
+
+
+    if (consi.isTouchDevice()) {
+      if (consi.mainElem.offsetWidth > 1599) {
+        addKeyboard();
+      } else {
+        addTouch();
+      }
+    } else {
+      addKeyboard();
     }
 
 
