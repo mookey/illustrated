@@ -61,6 +61,7 @@ window.consi.blog = window.consi.blog || {};
   function initFlipper(article) {
     article.addEventListener('click', function() {
       var back = this.querySelector('.back');
+      var doc;
       if (!back.classList.contains('init')) {
         setTimeout(function() {
           consi.loadBackgroundImages(back);
@@ -68,9 +69,20 @@ window.consi.blog = window.consi.blog || {};
         back.classList.add('init');
       }
       setActiveHeight(this);
-      this.classList.toggle('active');
+      if (this.classList.contains('active')) {
+        this.classList.remove('active');
+        if (c.currentScrollTop !== undefined) {
+          document.getElementById('top-indicator').style.top = (c.currentScrollTop - 20) + 'px';
+          smoothScroll.animateScroll( null, '#top-indicator' );
+        }
+      } else {
+        doc = document.documentElement;
+        c.currentScrollTop = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+        this.classList.add('active');
+      }
     }, false);
   }
+
 
   function initFlippers(articles) {
     var i         = 0;

@@ -294,12 +294,15 @@ nav a,
 
 .btn:hover,
 a.active,
-a:focus,
 a:hover {
   // background-color: #fafafa;
   // color: #999;
   border-bottom: 1px solid #000;
 }
+a:focus {
+  outline: 0;
+}
+
 
 // .front .btn:hover {
 //   color: #ffed00;
