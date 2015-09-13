@@ -28,6 +28,7 @@ this.consi = this.consi || {};
     var orientationEvent;
     var activeClass;
     var root                  = document.documentElement;
+    consi.root                = root;
     consi.isMoving            = true;
     document.body.scrollTop   = root.scrollTop = 0;
     consi.mainElem            = document.getElementById('main');

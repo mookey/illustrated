@@ -29,6 +29,47 @@
 }
 
 
+.cube-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  path {
+    stroke: #000;
+    fill: none;
+  }
+}
+
+.cube-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  perspective: 1000px;
+  // perspective-origin: 50% 50%;
+  .cube {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+
+    transition: all 600ms ease;
+
+    & > figure {
+      transform-origin: bottom left;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: absolute;
+      border: 1px solid #000;
+      box-sizing: border-box;
+      background-color: rgba(255, 255, 255, 1);
+      @include vendor-prefix("transition", "background-color 600ms ease");
+    }
+    &.transparent > figure {
+      background-color: rgba(255, 255, 255, 0.7);
+    }
+  }
+}
 
 .cv-wrapper {
   color: #999;
@@ -269,6 +310,4 @@
       background-color: #fff;
     }
   }
-
-
 }
