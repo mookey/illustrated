@@ -6,7 +6,8 @@ window.consi.blog = window.consi.blog || {};
 (function(consi) {
   var c = window.consi.blog;
   c.articles = Array.prototype.slice.call(document.querySelectorAll('[data-article]'), 0);
-  c.placeholderElem = document.querySelector('.placeholder').children[0];
+  // c.placeholderElem = document.querySelector('.placeholder').children[0];
+  c.initHeight = c.articles[0].offsetHeight;
 
   function initFaders(articles) {
     consi.each(articles, function(elem) {
@@ -28,27 +29,32 @@ window.consi.blog = window.consi.blog || {};
   function setActiveHeight(article, isResize) {
     var box;
     var elem;
+    var h;
     if (isResize) {
       consi.mainElem.classList.add('no-transition');
     }
-    c.placeholderElem.style.width = article.getBoundingClientRect().width + 'px';
+    // c.placeholderElem.style.width = article.getBoundingClientRect().width + 'px';
     if (article.classList.contains('active')) {
       if (isResize) {
         elem = article.querySelector('.back');
+        h = elem.children[0].offsetHeight;
       } else {
         elem = article.querySelector('.front');
+        h = c.initHeight;
       }
     } else {
       if (isResize) {
         elem = article.querySelector('.front');
+        h = c.initHeight;
       } else {
         elem = article.querySelector('.back');
+        h = elem.children[0].offsetHeight;
       }
     }
-    c.placeholderElem.innerHTML = '';
-    c.placeholderElem.appendChild(elem.cloneNode(true));
-    box = c.placeholderElem.getBoundingClientRect();
-    article.style.height = box.height + 'px';
+    // c.placeholderElem.innerHTML = '';
+    // c.placeholderElem.appendChild(elem.cloneNode(true));
+    // box = c.placeholderElem.getBoundingClientRect();
+    article.style.height = h + 'px';
     if (isResize) {
       /*ignore jslint start*/
       consi.mainElem.offsetHeight;
