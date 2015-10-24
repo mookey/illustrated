@@ -54,29 +54,29 @@ article {
 .close-link:focus {
   border: 1px solid #828282;
 }
-
-
-article:hover .front {
-  color: #fff;
-}
+//
+//
+// article:hover .front {
+//   color: #fff;
+// }
 
 article .front h2 {
   color: #fff;
 }
 article .front p {
   color: #fff;
-  @include tablet {
-    @include vendor-prefix("transition", "all 300ms ease");
-    color: #666;
-  }
+  // @include tablet {
+  //   @include vendor-prefix("transition", "all 300ms ease");
+  //   color: #666;
+  // }
 }
 article .front .date,
 article .front .tag {
   color: #999;
-  @include tablet {
-    @include vendor-prefix("transition", "all 300ms ease");
-    color: #666;
-  }
+  // @include tablet {
+  //   @include vendor-prefix("transition", "all 300ms ease");
+  //   color: #666;
+  // }
 }
 
 .gallery {
@@ -193,14 +193,14 @@ article .front .tag {
     color: #fff;
   }
 }
-
-article:hover .front .date,
-article:hover .front .tag {
-  color: #999;
-}
-article:hover .front p {
-  color: #fff;
-}
+//
+// article:hover .front .date,
+// article:hover .front .tag {
+//   color: #999;
+// }
+// article:hover .front p {
+//   color: #fff;
+// }
 
 
 .back h2,

@@ -95,7 +95,7 @@ window.consi.blog = window.consi.blog || {};
   c.init = function init(elem) {
     var fronts = elem.querySelectorAll('.front');
     initFlippers(c.articles);
-    initFaders(c.articles);
+    // initFaders(c.articles);
     PubSub.subscribe( consi.events.RESIZE , function() {
       consi.each(c.articles, function(article) {
         setActiveHeight(article, true);
