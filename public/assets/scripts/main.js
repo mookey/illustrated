@@ -88,15 +88,10 @@ this.consi = this.consi || {};
     }
 
 
-    if (consi.isTouchDevice()) {
-      if (consi.mainElem.offsetWidth > 1599) {
-        addKeyboard();
-      } else {
-        addTouch();
-      }
-    } else {
-      addKeyboard();
+    if (consi.isTouchDevice() && consi.mainElem.offsetWidth < 1599) {
+      addTouch();
     }
+    addKeyboard();
 
 
     window.addEventListener(orientationEvent, function() {

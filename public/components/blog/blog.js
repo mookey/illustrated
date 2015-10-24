@@ -65,7 +65,7 @@ window.consi.blog = window.consi.blog || {};
       if (!back.classList.contains('init')) {
         setTimeout(function() {
           consi.loadBackgroundImages(back);
-        }, 320);
+        }, 400);
         back.classList.add('init');
       }
       setActiveHeight(this);

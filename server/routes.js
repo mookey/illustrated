@@ -17,6 +17,10 @@ module.exports = function(app) {
   //   return '<div class="note odd">' + text + '</div>';
   // }
 
+  app.get('/me', function (req, res) {
+    res.redirect(301, '/cv');
+  });
+
   app.get('/:pane?', function (req, res) {
     var posts = [];
     var host ='images/';
@@ -28,13 +32,49 @@ module.exports = function(app) {
 
 
 
+
+    posts.push({
+      text    : '<p></p>',
+      author  : 'consiglieri',
+      date    : new Date(2015, 9, 10),
+      humanDate : '10 oktober 2015',
+      header  : 'The usual suspects',
+      extract : 'Vänner från förr...',
+      template : 'centered_bottom',
+      media   : [
+        {
+          src     : host + 'suspects.jpg',
+          type    : 'image',
+          view    : 'landscape',
+          width   : 800,
+          height  : 600,
+          aspect  : 75
+        },
+        {
+          src     : host + 'burn.jpg',
+          type    : 'image',
+          view    : 'landscape',
+          width   : 800,
+          height  : 600,
+          aspect  : 75
+        }
+      ],
+      notes : [
+        {
+          note : 'Well, I\'m pissed an vinigera again, Cause I think that I\'ve lost my best friend'
+        }
+      ]
+    });
+
+
+
     posts.push({
       text    : '<p></p>',
       author  : 'consiglieri',
       date    : new Date(2015, 8, 5),
       humanDate : '5 sep 2015',
       header  : 'The main man',
-      extract : 'Den bästa. Den finaste. Den skönaste.',
+      extract : 'The top dog',
       template : 'left_gallery',
       media   : [
         {

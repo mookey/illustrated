@@ -109,6 +109,7 @@ window.consi.cv = window.consi.cv || {};
     setTimeout(function() {
       cube.classList.remove('transparent');
       consi.loadBackgroundImages(c.elem);
+      cube.classList.add('hide');
     }, 3000);
   }
 
