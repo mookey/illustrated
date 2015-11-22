@@ -31,6 +31,47 @@ module.exports = function(app) {
     now = moment().format("dddd D MMM YYYY");
 
 
+		posts.push({
+      text    : '<p></p>',
+      author  : 'consiglieri',
+      date    : new Date(2015, 10, 20),
+      humanDate : '20 nov 2015',
+      header  : 'Edinburgh',
+      extract : 'Sista smörjelsen',
+      template : 'left_gallery',
+      media   : [
+        {
+          src     : host + 'gate.jpg',
+          type    : 'image',
+          view    : 'portrait',
+          width   : 600,
+          height  : 800,
+          aspect  : 136.5
+        },
+        {
+          src     : host + 'castle.jpg',
+          type    : 'image',
+          view    : 'portrait',
+					width   : 600,
+          height  : 800,
+          aspect  : 136.5
+        },
+        {
+          src     : host + 'john.jpg',
+          type    : 'image',
+          view    : 'portrait',
+					width   : 600,
+          height  : 800,
+          aspect  : 136.5
+        }
+      ],
+      notes : [
+        {
+          note : 'Well, I\'m pissed an vinigera again, Cause I think that I\'ve lost my best friend'
+        }
+      ]
+    });
+
 
 
     posts.push({
