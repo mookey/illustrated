@@ -55,7 +55,12 @@ window.consi.blog = window.consi.blog || {};
 
   function initFlipper(article) {
     article.addEventListener('click', function() {
-      var back = this.querySelector('.back');
+      onTrigger( this );
+    }, false);
+  }
+
+  function onTrigger( article ) {
+      var back = article.querySelector('.back');
       var doc;
       if (!back.classList.contains('init')) {
         setTimeout(function() {
@@ -63,9 +68,9 @@ window.consi.blog = window.consi.blog || {};
         }, 400);
         back.classList.add('init');
       }
-      setActiveHeight(this);
-      if (this.classList.contains('active')) {
-        this.classList.remove('active');
+      setActiveHeight( article );
+      if (article.classList.contains('active')) {
+        article.classList.remove('active');
         if (c.currentScrollTop !== undefined) {
           document.getElementById('top-indicator').style.top = (c.currentScrollTop - 20) + 'px';
           smoothScroll.animateScroll( null, '#top-indicator' );
@@ -73,11 +78,10 @@ window.consi.blog = window.consi.blog || {};
       } else {
         doc = document.documentElement;
         c.currentScrollTop = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
-        this.classList.add('active');
+        article.classList.add('active');
       }
-    }, false);
-  }
 
+  }
 
   function initFlippers(articles) {
     var i         = 0;
@@ -90,6 +94,7 @@ window.consi.blog = window.consi.blog || {};
   c.init = function init(elem) {
     var fronts = elem.querySelectorAll('.front');
     initFlippers(c.articles);
+
     PubSub.subscribe( consi.events.RESIZE , function() {
       consi.each(c.articles, function(article) {
         setActiveHeight(article, true);
@@ -99,6 +104,7 @@ window.consi.blog = window.consi.blog || {};
       consi.loadBackgroundImages(front);
       front.classList.add('init');
     });
+
     PubSub.subscribe( consi.events.CHARACTER_ESCAPE , function() {
       if ( consi.activeTab !== 'blog' ) {
         return;
@@ -107,10 +113,14 @@ window.consi.blog = window.consi.blog || {};
       var i = 0;
       var len = activeArticles.length;
       for ( i = 0; i < len; i++ ) {
-        setActiveHeight( activeArticles[i] );
-        activeArticles[i].classList.remove( 'active' );
+        onTrigger( activeArticles[i] );
       }
     });
+
+    PubSub.subscribe( consi.events.FLIPPER_SWIPE, function( ev, article ) {
+      onTrigger( article );
+    } );
+
   };
 
 }(window.consi));

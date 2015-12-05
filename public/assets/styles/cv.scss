@@ -226,7 +226,12 @@
 
 .biography {
   padding-top: 40px;
+  text-align: justify;
+  p {
+    margin: 14px 0 30px 0;
+  }
   @include tablet {
+    text-align: left;
     p {
       margin: 25px 0 15px 0;
       max-width: 600px;

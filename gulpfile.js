@@ -12,7 +12,7 @@ gulp.task('sass', function () {
   return gulp.src('./public/assets/styles/**/*.scss')
     // .pipe(sourcemaps.init())
     .pipe(sass())
-    .on('error', function (err) { console.log(err.message); })
+    .on('error', function (err) { console.log(err.message); this.emit('end'); })
     // .pipe(sourcemaps.write())
     .pipe(gulp.dest('./public/assets/styles'));
 });
@@ -41,7 +41,6 @@ gulp.task('clean', function() {
   return gulp.src('./public/dist', { read: false }) // much faster
     .pipe(rimraf());
 });
-
 
 gulp.task('bump', function () {
     return gulp.src(['./public/dist/styles/style.css', './public/dist/js/main.js'])

@@ -54,29 +54,16 @@ article {
 .close-link:focus {
   border: 1px solid #828282;
 }
-//
-//
-// article:hover .front {
-//   color: #fff;
-// }
 
 article .front h2 {
   color: #fff;
 }
 article .front p {
   color: #fff;
-  // @include tablet {
-  //   @include vendor-prefix("transition", "all 300ms ease");
-  //   color: #666;
-  // }
 }
 article .front .date,
 article .front .tag {
   color: #999;
-  // @include tablet {
-  //   @include vendor-prefix("transition", "all 300ms ease");
-  //   color: #666;
-  // }
 }
 
 .gallery {
@@ -168,20 +155,7 @@ article .front .tag {
 	height: 0;
 }
 
-.back {
-  // @include tablet {
-  //   .image-left {
-  //     float: left;
-  //     width: calc(100% - 20px);
-  //     padding: 20px 20px 20px 0;
-  //   }
-  //   .image-right {
-  //     float: right;
-  //     width: calc(100% - 20px);
-  //     padding: 20px 0 20px 20px;
-  //   }
-  // }
-}
+
 
 .touch {
   article .front .date,
@@ -193,15 +167,6 @@ article .front .tag {
     color: #fff;
   }
 }
-//
-// article:hover .front .date,
-// article:hover .front .tag {
-//   color: #999;
-// }
-// article:hover .front p {
-//   color: #fff;
-// }
-
 
 .back h2,
 .front h2 {
@@ -279,55 +244,77 @@ section {
   }
 }
 
-/*.active .image {
-  @include tablet {
-    width: calc(45% + 11px);
-    top: 0;
-    height: 100%;
-  }
-}
-*/
 
 article:hover .front .image {
   @include vendor-prefix("filter", "brightness(120%)grayscale(60%)");
-  @include tablet {
-/*    width: calc(45% + 11px);
-    top: 0;
-    height: 100%;*/
-  }
 }
 
-// article:nth-child(even) {
-//   .image {
-//     @include tablet {
-//       right: auto;
-//       left: -50px;
-//     }
-//   }
-//
-//   section {
-//     @include tablet {
-//       margin-left: 45%;
-//     }
-//   }
-// }
 
 article.active section {
   margin-left: 0;
 }
 
-.flipper {
-  @include vendor-prefix("transition", "all 300ms ease");
-  @include vendor-prefix("transform-style", "preserve-3d");
-  position: relative;
-  height: 100%;
-  @include vendor-prefix("transform-origin", "center left");
+.keyboard {
+  .flipper {
+    @include vendor-prefix("transition", "all 300ms ease");
+    @include vendor-prefix("transform-style", "preserve-3d");
+    position: relative;
+    height: 100%;
+    @include vendor-prefix("transform-origin", "center left");
+  }
+
+  .active .flipper {
+    @include vendor-prefix("transform", "rotateY(180deg)");
+    @include vendor-prefix("transform", "translateX(100%)rotateY(180deg)");
+  }
+
+  .active .front,
+  .back {
+    position: absolute;
+  }
+
+  .back {
+    @include vendor-prefix("transform", "rotateY(180deg)");
+    box-sizing: border-box;
+  }
+
+
+  .placeholder .front,
+  .placeholder .back {
+    position: relative;
+    transform: none;
+  }
 }
 
-.active .flipper {
-  @include vendor-prefix("transform", "rotateY(180deg)");
-  @include vendor-prefix("transform", "translateX(100%)rotateY(180deg)");
+.touch {
+  article {
+    width: 100%;
+    @include vendor-prefix("transition", "all 300ms ease");
+    @include vendor-prefix("transform", "translateX(0)");
+    &.active {
+      @include vendor-prefix("transform", "translateX(-100%)");
+    }
+  }
+  .back, .front {
+    display: inline-block;
+    @include vendor-prefix("transition", "opacity 300ms ease 300ms");
+  }
+  .back {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    opacity: 0;
+  }
+  .active {
+    .front {
+      opacity: 0;
+    }
+    .back {
+      opacity: 1;
+    }
+  }
 }
+
 
 .front,
 .back {
@@ -342,11 +329,9 @@ article.active section {
   background-color: #000;
   z-index: 2;
   cursor: pointer;
-  /* for firefox 31 */
   @include vendor-prefix("transform", "rotateY(0deg)");
   section {
     background-color: #000;
-    /*border: 1px solid #000;*/
   }
   a {
     font-family: 'Oswald', sans-serif;
@@ -354,29 +339,6 @@ article.active section {
     margin: 0;
   }
 }
-
-.active .front,
-.back {
-  position: absolute;
-}
-
-.back {
-  @include vendor-prefix("transform", "rotateY(180deg)");
-  box-sizing: border-box;
-  /*padding: 10px;*/
-  @include tablet {
-    /*padding: 20px;*/
-  }
-}
-
-
-.placeholder .front,
-.placeholder .back {
-  position: relative;
-  transform: none;
-}
-
-
 
 .note {
   padding: 5px 10px;

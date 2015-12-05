@@ -16,8 +16,9 @@ this.consi = this.consi || {};
     });
 
     consi.events = {
-      'RESIZE' : 0,
-      'CHARACTER_ESCAPE' : 100
+      'RESIZE'           : 0,
+      'CHARACTER_ESCAPE' : 100,
+      'FLIPPER_SWIPE'    : 200,
     };
 
   }
@@ -57,24 +58,58 @@ this.consi = this.consi || {};
       }, false);
     });
 
+
     function addTouch() {
       root.classList.add('touch');
+      consi.isTouch = true;
       basket
         .require({ url: 'https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.4/hammer.min.js', key: 'Hammer', unique: '1' })
         .then(function () {
           var mc = new Hammer(consi.mainElem, { threshold: 100 });
-          mc.on("swipeleft swiperight", function(ev) {
-            if (ev.type === 'swipeleft') {
-              consi.moveRight();
+          mc.on("swipeleft swiperight", function( ev ) {
+            var flipperElem = consi.getParentByClass( ev.target, 'flipper');
+            var articleElem;
+            if ( !flipperElem ) {
+              if (ev.type === 'swipeleft') {
+                consi.moveRight();
+              } else {
+                consi.moveLeft();
+              }
               return;
             }
-            consi.moveLeft();
+            articleElem = flipperElem.parentNode;
+            if ( ev.type === 'swipeleft' && articleElem.classList.contains( 'active' ) ) {
+              return;
+            }
+            if ( ev.type === 'swiperight' && articleElem.classList.contains( 'active' ) ) {
+              PubSub.publish( consi.events.FLIPPER_SWIPE, articleElem );
+              return;
+            }
+            if ( ev.type === 'swipeleft' ) {
+              PubSub.publish( consi.events.FLIPPER_SWIPE, articleElem );
+              return;
+            }
+            if ( ev.type === 'swiperight' ) {
+              return;
+            }
+
           });
         });
     }
 
+    consi.getParentByClass = function( element, cls ) {
+      while ( element ) {
+        if ( element.classList && element.classList.contains( cls ) ) {
+          return element;
+        }
+        element = element.parentNode;
+      }
+      return false;
+    };
+
     function addKeyboard() {
       root.classList.add('keyboard');
+      consi.isTouch = false;
       window.addEventListener('keydown', function(ev){
         var key         = ev.keyCode;
         if (key === 27) {
@@ -95,8 +130,9 @@ this.consi = this.consi || {};
 
     if (consi.isTouchDevice() && consi.mainElem.offsetWidth < 1599) {
       addTouch();
+    } else {
+      addKeyboard();
     }
-    addKeyboard();
 
 
     window.addEventListener(orientationEvent, function() {
