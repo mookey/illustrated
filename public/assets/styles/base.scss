@@ -20,7 +20,7 @@ h2 {
   position: absolute;
   width: 1px;
   height: 1px;
-  top: 0;
+  top: -10px;
   left: 0;
   z-index: -1;
 }
@@ -107,13 +107,6 @@ body {
   @include tablet {
     margin: 20px;
   }
-}
-
-.placeholder {
-  position: absolute;
-  left: -4000px;
-  top: 0;
-  width: 100%;
 }
 
 

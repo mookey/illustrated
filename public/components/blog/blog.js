@@ -71,13 +71,13 @@ window.consi.blog = window.consi.blog || {};
       setActiveHeight( article );
       if (article.classList.contains('active')) {
         article.classList.remove('active');
-        if (c.currentScrollTop !== undefined) {
-          document.getElementById('top-indicator').style.top = (c.currentScrollTop - 20) + 'px';
-          smoothScroll.animateScroll( null, '#top-indicator' );
-        }
+        // if (c.currentScrollTop !== undefined) {
+        //   document.getElementById('top-indicator').style.top = c.currentScrollTop + 'px';
+        //   smoothScroll.animateScroll( null, '#top-indicator' );
+        // }
       } else {
-        doc = document.documentElement;
-        c.currentScrollTop = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+        // doc = document.documentElement;
+        // c.currentScrollTop = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
         article.classList.add('active');
       }
 

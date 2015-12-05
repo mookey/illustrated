@@ -32,7 +32,7 @@ this.consi = this.consi || {};
     var root                  = document.documentElement;
     consi.root                = root;
     consi.isMoving            = true;
-    document.body.scrollTop   = root.scrollTop = 0;
+    // document.body.scrollTop   = root.scrollTop = 0;
     consi.mainElem            = document.getElementById('main');
     consi.navLinks            = Array.prototype.slice.call(document.querySelectorAll('[data-nav-link]'), 0);
     supportsOrientationChange = !!window.onorientationchange;
@@ -67,8 +67,20 @@ this.consi = this.consi || {};
         .then(function () {
           var mc = new Hammer(consi.mainElem, { threshold: 100 });
           mc.on("swipeleft swiperight", function( ev ) {
-            var flipperElem = consi.getParentByClass( ev.target, 'flipper');
+            var flipperElem;
             var articleElem;
+
+            if ( !consi.activeTab === 'blog' ) {
+              if (ev.type === 'swipeleft') {
+                consi.moveRight();
+              } else {
+                consi.moveLeft();
+              }
+              return;
+            }
+
+            flipperElem = consi.getParentByClass( ev.target, 'flipper');
+
             if ( !flipperElem ) {
               if (ev.type === 'swipeleft') {
                 consi.moveRight();
@@ -191,6 +203,7 @@ this.consi = this.consi || {};
   };
 
   function setScrollOffset(cls) {
+    return;
     var doc = document.documentElement;
     consi[cls].scrollTop = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
   }
@@ -209,7 +222,7 @@ this.consi = this.consi || {};
     consi.initiateComponent(cls);
     setTimeout(function() {
       consi.isMoving = false;
-      document.getElementById('top-indicator').style.top = ((consi[cls].scrollTop || 0) - 20) + 'px';
+      // document.getElementById('top-indicator').style.top = ((consi[cls].scrollTop || 0) - 20) + 'px';
       smoothScroll.animateScroll( null, '#top-indicator' );
     }, 610);
     //
