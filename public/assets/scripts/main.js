@@ -70,7 +70,7 @@ this.consi = this.consi || {};
             var flipperElem;
             var articleElem;
 
-            if ( !consi.activeTab === 'blog' ) {
+            if ( consi.activeTab !== 'blog' ) {
               if (ev.type === 'swipeleft') {
                 consi.moveRight();
               } else {
