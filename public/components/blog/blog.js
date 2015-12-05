@@ -6,7 +6,6 @@ window.consi.blog = window.consi.blog || {};
 (function(consi) {
   var c = window.consi.blog;
   c.articles = Array.prototype.slice.call(document.querySelectorAll('[data-article]'), 0);
-  // c.placeholderElem = document.querySelector('.placeholder').children[0];
   c.initHeight = c.articles[0].offsetHeight;
 
   function initFaders(articles) {
@@ -27,34 +26,24 @@ window.consi.blog = window.consi.blog || {};
   }
 
   function setActiveHeight(article, isResize) {
-    var box;
     var elem;
-    var h;
     if (isResize) {
       consi.mainElem.classList.add('no-transition');
     }
-    // c.placeholderElem.style.width = article.getBoundingClientRect().width + 'px';
     if (article.classList.contains('active')) {
       if (isResize) {
         elem = article.querySelector('.back');
-        h = elem.children[0].offsetHeight;
       } else {
         elem = article.querySelector('.front');
-        h = c.initHeight;
-      }
+		  }
     } else {
       if (isResize) {
         elem = article.querySelector('.front');
-        h = c.initHeight;
-      } else {
+		  } else {
         elem = article.querySelector('.back');
-        h = elem.children[0].offsetHeight;
       }
     }
-    // c.placeholderElem.innerHTML = '';
-    // c.placeholderElem.appendChild(elem.cloneNode(true));
-    // box = c.placeholderElem.getBoundingClientRect();
-    article.style.height = h + 'px';
+    article.style.height = elem.children[0].offsetHeight + 'px';
     if (isResize) {
       /*ignore jslint start*/
       consi.mainElem.offsetHeight;
@@ -101,7 +90,6 @@ window.consi.blog = window.consi.blog || {};
   c.init = function init(elem) {
     var fronts = elem.querySelectorAll('.front');
     initFlippers(c.articles);
-    // initFaders(c.articles);
     PubSub.subscribe( consi.events.RESIZE , function() {
       consi.each(c.articles, function(article) {
         setActiveHeight(article, true);
@@ -110,6 +98,18 @@ window.consi.blog = window.consi.blog || {};
     [].forEach.call(fronts, function(front) {
       consi.loadBackgroundImages(front);
       front.classList.add('init');
+    });
+    PubSub.subscribe( consi.events.CHARACTER_ESCAPE , function() {
+      if ( consi.activeTab !== 'blog' ) {
+        return;
+      }
+      var activeArticles = consi.mainElem.querySelectorAll( 'article.active' );
+      var i = 0;
+      var len = activeArticles.length;
+      for ( i = 0; i < len; i++ ) {
+        setActiveHeight( activeArticles[i] );
+        activeArticles[i].classList.remove( 'active' );
+      }
     });
   };
 

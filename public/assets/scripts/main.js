@@ -16,7 +16,8 @@ this.consi = this.consi || {};
     });
 
     consi.events = {
-      'RESIZE' : 0
+      'RESIZE' : 0,
+      'CHARACTER_ESCAPE' : 100
     };
 
   }
@@ -76,6 +77,10 @@ this.consi = this.consi || {};
       root.classList.add('keyboard');
       window.addEventListener('keydown', function(ev){
         var key         = ev.keyCode;
+        if (key === 27) {
+          PubSub.publish( consi.events.CHARACTER_ESCAPE );
+          return;
+        }
         if (key === 37) {
           consi.moveLeft();
           return;
@@ -239,6 +244,7 @@ this.consi = this.consi || {};
     consi.mainElem.classList.add(cls);
     consi.mainElem.querySelector('[data-nav-link="' + cls + '"]').classList.add('active');
     consi.mainElem.setAttribute('data-active-class', cls);
+		consi.activeTab = cls;
     window.history.replaceState({ url : cls }, '', '/' + cls);
   };
 

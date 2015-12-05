@@ -2,22 +2,24 @@
   <div class="flipper">
     <div class="front">
 
-      <div class="image invisible" data-image-src="{{ media.0.src }}"></div>
-      <section>
-        <header>
-          <div>
-            <span class="date">{{humanDate}}</span>
-            <h2>{{header}}</h2>
-            <div class="sub-header">
-              <span class="tag">av {{author}}</span>
-            </div>
-          </div>
-          <p>
-           {{extract}}
-          </p>
-          <a href="" class="btn no-op">Läs mer</a>
-        </header>
-      </section>
+			<div>
+	      <div class="image invisible" data-image-src="{{ media.0.src }}"></div>
+	      <section>
+	        <header>
+	          <div>
+	            <span class="date">{{humanDate}}</span>
+	            <h2>{{header}}</h2>
+	            <div class="sub-header">
+	              <span class="tag">av {{author}}</span>
+	            </div>
+	          </div>
+	          <p>
+	           {{extract}}
+	          </p>
+	          <a href="" class="btn no-op">Läs mer</a>
+	        </header>
+	      </section>
+			</div>
 
     </div>
 
@@ -25,19 +27,19 @@
 
 
     <div class="back clearfix">
+			<div>
+				{{#ifEqual template 'left_gallery'}}
+	        {{> blog/left_gallery}}
+	      {{/ifEqual}}
 
-			{{#ifEqual template 'left_gallery'}}
-        {{> blog/left_gallery}}
-      {{/ifEqual}}
+	      {{#ifEqual template 'left_bottom'}}
+	        {{> blog/left_bottom}}
+	      {{/ifEqual}}
 
-      {{#ifEqual template 'left_bottom'}}
-        {{> blog/left_bottom}}
-      {{/ifEqual}}
-
-      {{#ifEqual template 'centered_bottom'}}
-        {{> blog/centered_bottom}}
-      {{/ifEqual}}
-
+	      {{#ifEqual template 'centered_bottom'}}
+	        {{> blog/centered_bottom}}
+	      {{/ifEqual}}
+      </div>
     </div>
   </div>
 </article>

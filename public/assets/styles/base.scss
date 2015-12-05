@@ -1,6 +1,9 @@
 @import "media";
 @import "mixins";
 
+$close-button-z: 20;
+
+
 h1,
 h2 {
   font-family: 'Abril Fatface', cursive;
@@ -259,6 +262,7 @@ nav a {
 	right: 20px;
 	top: 30px;
 	padding: 6px 6px 3px 6px;
+	z-index: $close-button-z;
 	@include tablet {
 		top: 45px;
 	}
