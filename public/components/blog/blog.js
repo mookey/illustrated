@@ -6,24 +6,6 @@ window.consi.blog = window.consi.blog || {};
 (function(consi) {
   var c = window.consi.blog;
   c.articles = Array.prototype.slice.call(document.querySelectorAll('[data-article]'), 0);
-  c.initHeight = c.articles[0].offsetHeight;
-
-  function initFaders(articles) {
-    consi.each(articles, function(elem) {
-      elem.addEventListener('mouseenter', function() {
-        consi.each(c.articles, function(el) {
-          el.classList.add('faded');
-        });
-        elem.classList.remove('faded');
-      }, false);
-      elem.addEventListener('mouseleave', function() {
-        consi.each(c.articles, function(el) {
-          el.classList.remove('faded');
-      });
-      }, false);
-
-    });
-  }
 
   function setActiveHeight(article, isResize) {
     var elem;
@@ -52,6 +34,9 @@ window.consi.blog = window.consi.blog || {};
     }
   }
 
+  function updateViewportHeight() {
+    c.viewportHeight = (window.innerHeight || document.documentElement.clientHeight);
+  }
 
   function initFlipper(article) {
     article.addEventListener('click', function() {
@@ -95,9 +80,12 @@ window.consi.blog = window.consi.blog || {};
     var fronts = elem.querySelectorAll('.front');
     initFlippers(c.articles);
 
+    updateViewportHeight();
+
     PubSub.subscribe( consi.events.RESIZE , function() {
       consi.each(c.articles, function(article) {
         setActiveHeight(article, true);
+        updateViewportHeight();
       });
     });
     [].forEach.call(fronts, function(front) {
@@ -119,7 +107,57 @@ window.consi.blog = window.consi.blog || {};
 
     PubSub.subscribe( consi.events.FLIPPER_SWIPE, function( ev, article ) {
       onTrigger( article );
-    } );
+    });
+
+    PubSub.subscribe( consi.events.SCROLL, function( ev ) {
+      return;
+      var earliestArticle = c.articles[c.articles.length - 1];
+      var bottom = earliestArticle.getBoundingClientRect().bottom;
+      var url = earliestArticle.getAttribute('data-next-url');
+      if ( c.isRequesting ) {
+        return;
+      }
+      console.log('isRequesting', c.isRequesting)
+      console.log('bottom', bottom);
+      console.log('c.viewportHeight', c.viewportHeight);
+      if (bottom < c.viewportHeight ) {
+        c.isRequesting = true;
+        if ( c.hasRequestedTemplates ) {
+          consi.doRequest({
+            type : 'get',
+            url  : url
+          }, function( data ) {
+            console.log( Handlebars.partials.posts( data ) );
+            Handlebars.partials.posts( data );
+            // c.isRequesting = false;
+          });
+        } else {
+          c.hasRequestedTemplates = true;
+          basket
+            .require({ url: './assets/scripts/templates.js', key: 'templates', skipCache: true })
+            .then(function () {
+              consi.doRequest({
+                type : 'get',
+                url  : url
+              }, function( data ) {
+                // console.log( Handlebars.partials.post({}) );
+                // console.log( Handlebars.partials.posts( data ) );
+                var div = document.createElement('div');
+                var posts = JSON.parse( data );
+                var html = '';
+
+                posts.forEach( function( postData ) {
+                  console.log( postData )
+                  html += Handlebars.partials['blog/post']( postData );
+                });
+                div.innerHTML = html;
+                console.log( div );
+                // c.isRequesting = false;
+              });
+            });
+        }
+      }
+    });
 
   };
 

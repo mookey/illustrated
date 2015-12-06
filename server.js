@@ -8,12 +8,4 @@ require(global.env.server + 'config.js')(app);
 require(global.env.server + 'routes.js')(app);
 require(global.env.server + 'errors.js')(app);
 
-/**
-require('./server/config/config.js')(app);
-require('./server/controllers/routes.js')(app);
-require('./server/controllers/admin.js')(app);
-require('./server/config/errors.js')(app);*/
-
-// console.log('port',process.env.PORT);
-
 app.listen(global.conf.PORT);

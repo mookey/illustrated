@@ -7,6 +7,10 @@ var rimraf      = require('gulp-rimraf');
 var sourcemaps  = require('gulp-sourcemaps');
 var minifyCss   = require('gulp-minify-css');
 var runSequence = require('gulp-run-sequence');
+// var handlebars  = require('gulp-handlebars');
+// var wrap        = require('gulp-wrap');
+// var concat      = require('gulp-concat');
+// var path        = require('path');
 
 gulp.task('sass', function () {
   return gulp.src('./public/assets/styles/**/*.scss')
@@ -19,9 +23,9 @@ gulp.task('sass', function () {
 
 
 gulp.task('scripts', function() {
-    return gulp.src(['./public/assets/scripts/main.js', './public/components/**/*.js'])
-        .pipe(uglify())
-        .pipe(gulp.dest('./public/dist/js'));
+  return gulp.src(['./public/assets/scripts/main.js', './public/components/**/*.js'])
+    .pipe(uglify())
+    .pipe(gulp.dest('./public/dist/js'));
 });
 
 
@@ -36,6 +40,25 @@ gulp.task('watch', function() {
     gulp.watch('./public/assets/styles/**/*.scss', ['sass']);
 });
 
+// gulp.task('handlebars', function() {
+//   return gulp.src(['public/components/blog/**/*.html', 'public/components/generic/**/*.html'])
+//     .pipe(handlebars())
+//     .pipe(wrap('Handlebars.registerPartial(<%= processPartialName(file.relative) %>, Handlebars.template(<%= contents %>));', {}, {
+//       imports: {
+//         processPartialName: function(fileName) {
+//           // Strip the extension and the underscore
+//           // Escape the output with JSON.stringify
+//           if ( fileName.indexOf('close') > -1 ) {
+//             return JSON.stringify('generic/' + fileName.replace('.js', ''));
+//           }
+//           return JSON.stringify('blog/' + fileName.replace('.js', ''));
+//         }
+//       }
+//     }))
+//     .pipe(concat('templates.js'))
+//     .pipe(uglify())
+//     .pipe(gulp.dest('public/assets/scripts'));
+// });
 
 gulp.task('clean', function() {
   return gulp.src('./public/dist', { read: false }) // much faster
@@ -43,11 +66,11 @@ gulp.task('clean', function() {
 });
 
 gulp.task('bump', function () {
-    return gulp.src(['./public/dist/styles/style.css', './public/dist/js/main.js'])
+    return gulp.src(['./public/dist/styles/style.css', './public/dist/js/main.js', './public/dist/js/blog/blog.js', './public/dist/js/cv/cv.js'])
         .pipe(rev())
-        .pipe(gulp.dest('./public/dist'))  // write rev'd assets to build dir
+        .pipe(gulp.dest('./public/dist'))
         .pipe(rev.manifest())
-        .pipe(gulp.dest('./public/dist')); // write manifest to build dir
+        .pipe(gulp.dest('./public/dist'));
 });
 
 gulp.task('default', function(cb) {

@@ -1,3 +1,23 @@
+;(function() {
+    var throttle = function(type, name, obj) {
+        obj = obj || window;
+        var running = false;
+        var func = function() {
+            if (running) { return; }
+            running = true;
+            requestAnimationFrame(function() {
+                obj.dispatchEvent(new CustomEvent(name));
+                running = false;
+            });
+        };
+        obj.addEventListener(type, func);
+    };
+
+    /* init - you can init any event */
+    throttle ("scroll", "optimizedScroll");
+})();
+
+
 this.consi = this.consi || {};
 
 (function(c) {
@@ -16,9 +36,10 @@ this.consi = this.consi || {};
     });
 
     consi.events = {
-      'RESIZE'           : 0,
-      'CHARACTER_ESCAPE' : 100,
-      'FLIPPER_SWIPE'    : 200,
+      'RESIZE'            : 0,
+      'CHARACTER_ESCAPE'  : 100,
+      'FLIPPER_SWIPE'     : 200,
+      'SCROLL'            : 300
     };
 
   }
@@ -145,6 +166,11 @@ this.consi = this.consi || {};
     } else {
       addKeyboard();
     }
+
+
+    window.addEventListener('optimizedScroll', function() {
+      PubSub.publish( consi.events.SCROLL );
+    });
 
 
     window.addEventListener(orientationEvent, function() {
@@ -340,6 +366,16 @@ this.consi = this.consi || {};
       })(imageElem);
     }
   }
+
+  consi.doRequest = function( data, cb ) {
+    var r = new XMLHttpRequest();
+    r.open( data.type, data.url , true);
+    r.onreadystatechange = function () {
+      if (r.readyState != 4 || r.status != 200) return;
+      cb( r.responseText );
+    };
+    r.send( data.body );
+  };
 
   document.addEventListener("DOMContentLoaded", load, false);
 })(this.consi);

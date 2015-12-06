@@ -16,7 +16,7 @@
         window.consi = {};
         consi.activeTab = '{{ pane }}';
       </script>
-      <script src="{{ js }}"></script>
+      <script src="{{ mainScript }}"></script>
       <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -44,5 +44,6 @@
       </nav>
       {{{ body }}}
     </div>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>
   </body>
 </html>

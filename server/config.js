@@ -41,27 +41,32 @@ module.exports = function(app) {
     buildRev = JSON.parse(fs.readFileSync(global.env.dist + 'rev-manifest.json', 'utf8'));
     /*jslint stupid: false */
     global.env.build = {
-      css   : '/dist/' + buildRev['style.css'],
-      js    : '/dist/' + buildRev['main.js'],
-      path  : '/dist/js/'
+      css         : '/dist/' + buildRev['style.css'],
+      mainScript  : '/dist/' + buildRev['main.js'],
+      blogScript  : '/dist/' + buildRev['blog.js'],
+      cvScript    : '/dist/' + buildRev['cv.js'],
+      path        : '/dist/js/'
     };
   } else {
     name = 'development.json';
     global.env.build = {
-      css   : '/assets/styles/style.css',
-      js    : '/assets/scripts/main.js',
-      path  : '/components/'
+      css         : '/assets/styles/style.css',
+      mainScript  : '/assets/scripts/main.js',
+      blogScript  : '/components/blog/blog.js',
+      cvScript    : '/components/cv/cv.js',
+      path        : '/components/'
     };
   }
 
   app.use(function (req, res, next) {
-    req.locals      = {};
-    req.locals.js   = global.env.build.js;
-    req.locals.css  = global.env.build.css;
-    req.locals.path = global.env.build.path;
+    req.locals            = {};
+    req.locals.mainScript = global.env.build.mainScript;
+    req.locals.blogScript = global.env.build.blogScript;
+    req.locals.cvScript   = global.env.build.cvScript;
+    req.locals.css        = global.env.build.css;
+    req.locals.path       = global.env.build.path;
     next();
   });
-
   /*jslint stupid: true */
   conf = JSON.parse(fs.readFileSync(global.root + '/' + name, 'utf8'));
   /*jslint stupid: false */

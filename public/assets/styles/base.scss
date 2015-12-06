@@ -23,6 +23,9 @@ h2 {
   top: -10px;
   left: 0;
   z-index: -1;
+  @include tablet {
+    top: -20px;
+  }
 }
 
 

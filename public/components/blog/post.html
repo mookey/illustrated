@@ -1,4 +1,4 @@
-<article data-article="true">
+<article data-article="true" data-next-url={{ url }}>
   <div class="flipper">
     <div class="front">
 
@@ -21,24 +21,21 @@
 	      </section>
 			</div>
 
-    </div
+    </div>
 
-
-
-
-    ><div class="back clearfix">
+    <div class="back clearfix">
 			<div>
-				{{#ifEqual template 'left_gallery'}}
+				{{#if isLeftGallery }}
 	        {{> blog/left_gallery}}
-	      {{/ifEqual}}
+	      {{/if}}
 
-	      {{#ifEqual template 'left_bottom'}}
+	      {{#if isLeftBottom}}
 	        {{> blog/left_bottom}}
-	      {{/ifEqual}}
+	      {{/if}}
 
-	      {{#ifEqual template 'centered_bottom'}}
+	      {{#if isCenteredBottom}}
 	        {{> blog/centered_bottom}}
-	      {{/ifEqual}}
+	      {{/if}}
       </div>
     </div>
   </div>
