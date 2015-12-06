@@ -168,9 +168,12 @@ article .front .tag {
   }
 }
 
-.back h2,
 .front h2 {
   margin: 0;
+}
+
+.back h2 {
+  margin: 0 50px 0 0;
 }
 
 iframe {

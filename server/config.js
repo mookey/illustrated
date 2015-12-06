@@ -45,6 +45,7 @@ module.exports = function(app) {
       mainScript  : '/dist/' + buildRev['main.js'],
       blogScript  : '/dist/' + buildRev['blog.js'],
       cvScript    : '/dist/' + buildRev['cv.js'],
+      templates   : '/dist/' + buildRev['templates.js'],
       path        : '/dist/js/'
     };
   } else {
@@ -54,6 +55,7 @@ module.exports = function(app) {
       mainScript  : '/assets/scripts/main.js',
       blogScript  : '/components/blog/blog.js',
       cvScript    : '/components/cv/cv.js',
+      templates   : '/dist/templates.js',
       path        : '/components/'
     };
   }
@@ -63,6 +65,7 @@ module.exports = function(app) {
     req.locals.mainScript = global.env.build.mainScript;
     req.locals.blogScript = global.env.build.blogScript;
     req.locals.cvScript   = global.env.build.cvScript;
+    req.locals.templates  = global.env.build.templates;
     req.locals.css        = global.env.build.css;
     req.locals.path       = global.env.build.path;
     next();

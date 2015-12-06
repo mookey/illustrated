@@ -28,7 +28,7 @@
       <link rel="shortcut icon" href="images/favicon.ico">
   </head>
   <body>
-    <div id="main" class="{{ pane }}" data-active-class="{{ pane }}">
+    <div id="main" class="{{ pane }}" data-templates={{ templates }} data-active-class="{{ pane }}">
       <h1 class="logo">Garhammar</h1>
       <div id="top-indicator"></div>
       <div class="top split">
@@ -44,6 +44,6 @@
       </nav>
       {{{ body }}}
     </div>
-    <script async src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.0/handlebars.min.js"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.runtime.min.js"></script>
   </body>
 </html>

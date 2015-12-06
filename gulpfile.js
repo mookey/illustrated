@@ -7,10 +7,7 @@ var rimraf      = require('gulp-rimraf');
 var sourcemaps  = require('gulp-sourcemaps');
 var minifyCss   = require('gulp-minify-css');
 var runSequence = require('gulp-run-sequence');
-// var handlebars  = require('gulp-handlebars');
-// var wrap        = require('gulp-wrap');
-// var concat      = require('gulp-concat');
-// var path        = require('path');
+var shell       = require('gulp-shell')
 
 gulp.task('sass', function () {
   return gulp.src('./public/assets/styles/**/*.scss')
@@ -28,6 +25,10 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest('./public/dist/js'));
 });
 
+gulp.task('templates', shell.task([
+  'handlebars public/components/blog/*.html -f public/dist/templates.js -pm'
+]))
+
 
 gulp.task('compress', function() {
   return gulp.src('./public/assets/styles/style.css')
@@ -37,28 +38,9 @@ gulp.task('compress', function() {
 
 
 gulp.task('watch', function() {
-    gulp.watch('./public/assets/styles/**/*.scss', ['sass']);
+    gulp.watch('./public/assets/styles/**/*.scss', ['sass', 'templates']);
 });
 
-// gulp.task('handlebars', function() {
-//   return gulp.src(['public/components/blog/**/*.html', 'public/components/generic/**/*.html'])
-//     .pipe(handlebars())
-//     .pipe(wrap('Handlebars.registerPartial(<%= processPartialName(file.relative) %>, Handlebars.template(<%= contents %>));', {}, {
-//       imports: {
-//         processPartialName: function(fileName) {
-//           // Strip the extension and the underscore
-//           // Escape the output with JSON.stringify
-//           if ( fileName.indexOf('close') > -1 ) {
-//             return JSON.stringify('generic/' + fileName.replace('.js', ''));
-//           }
-//           return JSON.stringify('blog/' + fileName.replace('.js', ''));
-//         }
-//       }
-//     }))
-//     .pipe(concat('templates.js'))
-//     .pipe(uglify())
-//     .pipe(gulp.dest('public/assets/scripts'));
-// });
 
 gulp.task('clean', function() {
   return gulp.src('./public/dist', { read: false }) // much faster
@@ -66,7 +48,7 @@ gulp.task('clean', function() {
 });
 
 gulp.task('bump', function () {
-    return gulp.src(['./public/dist/styles/style.css', './public/dist/js/main.js', './public/dist/js/blog/blog.js', './public/dist/js/cv/cv.js'])
+    return gulp.src(['./public/dist/styles/style.css', './public/dist/templates.js', './public/dist/js/main.js', './public/dist/js/blog/blog.js', './public/dist/js/cv/cv.js'])
         .pipe(rev())
         .pipe(gulp.dest('./public/dist'))
         .pipe(rev.manifest())
@@ -74,5 +56,5 @@ gulp.task('bump', function () {
 });
 
 gulp.task('default', function(cb) {
-  runSequence('clean', ['sass', 'scripts'], 'compress', 'bump', cb);
+  runSequence('clean', ['sass', 'scripts', 'templates'], 'compress', 'bump', cb);
 });

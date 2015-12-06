@@ -156,8 +156,10 @@ window.consi.blog = window.consi.blog || {};
         return;
       }
 
+      var templatesUrl = consi.mainElem.getAttribute('data-templates');
+
       basket
-        .require({ url: './dist/templates.js', key: 'templates', skipCache: true })
+        .require({ url: templatesUrl, key: 'templates', skipCache: true })
         .then(function () {
           Object.keys( Handlebars.partials ).forEach( function( key ) {
             var name = key.split('.')[0];
