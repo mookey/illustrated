@@ -181,11 +181,6 @@ this.consi = this.consi || {};
 
     setTimeout(function() {
       document.querySelector('.top').classList.add('initialized');
-      consi.each(consi.mainElem.querySelectorAll('.no-op'), function(noop) {
-        noop.addEventListener('click', function(ev) {
-          ev.preventDefault();
-        }, false);
-      });
     }, 100);
     setTimeout(function() {
       consi.mainElem.classList.add('initialized');

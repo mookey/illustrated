@@ -1,6 +1,7 @@
 'use strict';
 
 var moment = require('moment');
+var handlebars    = require('handlebars');
 
 module.exports = function(app) {
 
@@ -22,7 +23,10 @@ module.exports = function(app) {
   });
 
   app.get('/blog/:date', function (req, res) {
-    console.log('fucker');
+
+    res.send( [] );
+    return;
+
     var host ='images/';
     var posts = [];
 

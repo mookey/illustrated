@@ -206,6 +206,7 @@
       margin-right: 3px;
       border-radius: 50%;
       background-color: #eaeaea;
+      @include vendor-prefix("transition", "all 600ms ease");
       &.active {
         background-color: #ccc;
         // border: 1px solid #985D5D;
@@ -217,7 +218,8 @@
       li {
         background-color: #ccc;
         &.active {
-          background-color: #EFA0A0;
+          // background-color: #EFA0A0;
+          background-color: #777;
         }
       }
     }
