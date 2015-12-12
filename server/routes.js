@@ -202,7 +202,7 @@ module.exports = function(app) {
       template : 'centered_bottom',
       media   : [
         {
-          src     : host + 'familja.jpg',
+          src     : host + 'huset.jpg',
           type    : 'image',
           view    : 'landscape',
           width   : 800,
@@ -210,7 +210,7 @@ module.exports = function(app) {
           aspect  : 75
         },
         {
-          src     : host + 'huset.jpg',
+          src     : host + 'familja.jpg',
           type    : 'image',
           view    : 'landscape',
           width   : 800,

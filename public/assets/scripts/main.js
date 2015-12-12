@@ -79,12 +79,6 @@ this.consi = this.consi || {};
       }, false);
     });
 
-    Array.prototype.slice.call(document.querySelectorAll('.no-op'), 0).forEach(function( noOp ) {
-      noOp.addEventListener('click', function( ev ) {
-        ev.preventDefault();
-      });
-    });
-
 
     function addTouch() {
       root.classList.add('touch');

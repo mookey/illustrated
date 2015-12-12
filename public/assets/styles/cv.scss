@@ -75,7 +75,7 @@
 }
 
 .cv-wrapper {
-  color: #999;
+  // color: #999;
   max-width: 900px;
 
   p {
@@ -88,16 +88,22 @@
     // font-family: 'Oswald', sans-serif;
     font-family: 'Abril Fatface', cursive;
     font-size: 2rem;
-    border-top: 3px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    color: #ccc;
-		@include vendor-prefix("transition", "all 600ms ease");
-  }
-
-  .active header {
     border-top: 3px solid #000;
     border-bottom: 1px solid #000;
     color: #000;
+		@include vendor-prefix("transition", "all 600ms ease");
+  }
+
+  // .active header {
+  //   border-top: 3px solid #000;
+  //   border-bottom: 1px solid #000;
+  //   color: #000;
+  // }
+  header.inactive,
+  .inactive header {
+    border-top: 3px solid #999;
+    border-bottom: 1px solid #999;
+    color: #999;
   }
 
   .timeline-wrapper,
@@ -209,10 +215,11 @@
       height: 9px;
       margin-right: 3px;
       border-radius: 50%;
-      background-color: #eaeaea;
+      background-color: #ccc;
       @include vendor-prefix("transition", "all 600ms ease");
       &.active {
-        background-color: #ccc;
+        background-color: #eaeaea;
+        background-color: #444;
         // border: 1px solid #985D5D;
       }
     }
@@ -220,11 +227,11 @@
   &.active {
     .points {
       li {
-        background-color: #ccc;
-        &.active {
-          // background-color: #EFA0A0;
-          background-color: #777;
-        }
+        // background-color: #ccc;
+        // &.inactive {
+        //   background-color: #777;
+        //   // background-color: #EFA0A0;
+        // }
       }
     }
   }

@@ -48,6 +48,12 @@ window.consi.blog = window.consi.blog || {};
       ev.preventDefault();
       onTrigger( this );
     }, false);
+
+    Array.prototype.slice.call(article.querySelectorAll('.no-op'), 0).forEach(function( noOp ) {
+      noOp.addEventListener('click', function( ev ) {
+        ev.preventDefault();
+      });
+    });
   }
 
   function onTrigger( article ) {
