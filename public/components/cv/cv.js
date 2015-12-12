@@ -95,15 +95,15 @@ window.consi.cv = window.consi.cv || {};
     }, 200);
 
     setTimeout(function() {
-      cube.style.transform        = 'translate3d(0, 0 ,-' + (widths.w) + 'px)';
+      cube.style.transform = 'translate3d(0, 0 ,-' + (widths.w) + 'px)';
     }, 1000);
 
     setTimeout(function() {
-      cube.style.transform        = 'translate3d(0, 0 ,-' + (widths.w) + 'px)rotateY(180deg)';
+      cube.style.transform = 'translate3d(0, 0 ,-' + (widths.w) + 'px)rotateY(180deg)';
     }, 1700);
 
     setTimeout(function() {
-      cube.style.transform        = 'translate3d(0, 0 , 0)rotateY(180deg)';
+      cube.style.transform = 'translate3d(0, 0 , 0)rotateY(180deg)';
     }, 2400);
 
     setTimeout(function() {
@@ -152,7 +152,11 @@ window.consi.cv = window.consi.cv || {};
     var state;
     var delay = 0;
     c.elem = elem;
-    showIntro();
+    if ( navigator.userAgent.toLowerCase().indexOf('chrome') > -1 ) {
+      showIntro();
+    } else {
+      consi.loadBackgroundImages(c.elem);
+    }
 
     if (consi.root.classList.contains('keyboard')) {
       setTimeout(function() {

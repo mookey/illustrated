@@ -192,10 +192,43 @@ module.exports = function(app) {
     moment.locale('sv');
     now = moment().format("dddd D MMM YYYY");
 
+    posts.push({
+      text    : '<p></p>',
+      author  : 'garhammar',
+      date    : new Date(2015, 11, 6),
+      humanDate : '6 dec 2015',
+      header  : 'Syster och bror. Main man och Dixon',
+      extract : '',
+      template : 'centered_bottom',
+      media   : [
+        {
+          src     : host + 'familja.jpg',
+          type    : 'image',
+          view    : 'landscape',
+          width   : 800,
+          height  : 600,
+          aspect  : 75
+        },
+        {
+          src     : host + 'huset.jpg',
+          type    : 'image',
+          view    : 'landscape',
+          width   : 800,
+          height  : 600,
+          aspect  : 75
+        }
+      ],
+      notes : [
+        {
+          note : 'Well, I\'m pissed an vinigera again, Cause I think that I\'ve lost my best friend'
+        }
+      ]
+    });
+
 
 		posts.push({
       text    : '<p></p>',
-      author  : 'consiglieri',
+      author  : 'garhammar',
       date    : new Date(2015, 10, 20),
       humanDate : '20 nov 2015',
       header  : 'Edinburgh',
@@ -238,7 +271,7 @@ module.exports = function(app) {
 
     posts.push({
       text    : '<p></p>',
-      author  : 'consiglieri',
+      author  : 'garhammar',
       date    : new Date(2015, 9, 10),
       humanDate : '10 oktober 2015',
       header  : 'The usual suspects',
@@ -273,7 +306,7 @@ module.exports = function(app) {
 
     posts.push({
       text    : '<p></p>',
-      author  : 'consiglieri',
+      author  : 'garhammar',
       date    : new Date(2015, 8, 5),
       humanDate : '5 sep 2015',
       header  : 'The main man',
@@ -315,7 +348,7 @@ module.exports = function(app) {
 
     posts.push({
       text    : '<p></p>',
-      author  : 'consiglieri',
+      author  : 'garhammar',
       date    : new Date(2015, 8, 4),
       humanDate : '4 sep 2015',
       header  : 'Mina ömma föräldrar',

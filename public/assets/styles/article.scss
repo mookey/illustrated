@@ -69,13 +69,13 @@ article .front .tag {
 .gallery {
   display: block;
   box-sizing: border-box;
-  padding: 10px;
+  // padding: 10px;
 }
 
 .image-container {
   box-shadow: 0 0 10px -3px #000;
   width: 100%;
-  margin: 10px auto;
+  margin: 0 auto 10px auto;
   padding: 10px;
   box-sizing: border-box;
   position: relative;
@@ -126,7 +126,7 @@ article .front .tag {
     width: 40%;
     &.image-left {
       float: left;
-      margin: 0 20px 20px -60px;
+      margin: 0 20px 10px -60px;
     }
     &.image-right {
       float: right;
@@ -200,7 +200,7 @@ section {
 .back section {
   width: 100%;
   margin-left: 0;
-  padding-bottom: 80px;
+  padding-bottom: 10px;
 }
 
 .back header {
