@@ -5,8 +5,11 @@ public/dist/*
 public/assets/**/*.css
 public/img
 public/images
+server/dump
+dump
 production.json
 development.json
 init.sh
 clean.sh
 deploy.sh
+dump.sh
