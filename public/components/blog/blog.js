@@ -152,7 +152,7 @@ window.consi.blog = window.consi.blog || {};
       }
 
       earliestArticle = c.articles[c.articles.length - 1];
-      if ( earliestArticle.getBoundingClientRect().bottom > (-200 + c.viewportHeight) ) {
+      if ( earliestArticle.getBoundingClientRect().bottom > ( 100 + c.viewportHeight) ) {
         return;
       }
 

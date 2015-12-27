@@ -6,7 +6,6 @@ var handlebars = require('handlebars');
 
 module.exports = function(app) {
 
-
   function r(req, res, data) {
     if (req.xhr) {
       res.send(data);
@@ -19,38 +18,45 @@ module.exports = function(app) {
   //   return '<div class="note odd">' + text + '</div>';
   // }
 
-  app.get('/me', function (req, res) {
-    res.redirect(301, '/cv');
-  });
 
-  app.get('/blog/:date', function (req, res) {
+  function getPosts( date, isDynamic ) {
+    return new Promise(function (resolve, reject) {
+      var opts = {};
+      if ( date ) {
+        opts.date = {
+          $lt : date
+        };
+      }
+      global.db.collection( global.conf.DB_COLLECTION_POSTS )
+        .findAsync( opts, {
+          limit : 3,
+          sort : {
+            date : -1
+          }
+        })
+        .then(function( cursor ) {
+          return cursor.toArrayAsync();
+        })
+        .then(function( posts ) {
+          posts.forEach( function( post ) { addPostProperties( post, isDynamic ); } );
+          resolve( posts );
+        });
+    });
+  }
+
+  app.get('/blog/:date', function( req, res ) {
     var date = moment( req.params.date, 'YYYY_MM_DD').toDate();
     var isDynamic = true;
-    global.db.collection( global.conf.DB_COLLECTION_POSTS )
-    .findAsync({
-      date : {
-        $lt : date
-      }
-    }, {
-      limit : 3,
-      sort : {
-        date : -1
-      }
-    })
-    .then(function( cursor ) {
-      return cursor.toArrayAsync();
-    })
-    .then(function( posts ) {
-      posts.forEach( function( post ) { addPostProperties( post, isDynamic ); } );
-      res.send(posts);
-    }).catch(function(err) {
-      console.log(err);
-      res.sendStatus(500);
-    });
-
+    getPosts( date, isDynamic )
+      .then(function( posts ) {
+        res.send( posts );
+      }).catch(function( err ) {
+        console.log( err );
+        res.sendStatus( 500 );
+      });
   });
 
-  app.get('/:pane?', function (req, res) {
+  app.get('/:pane?', function( req, res ) {
     var host ='images/';
     var isDynamic = false;
     var pane;
@@ -59,18 +65,8 @@ module.exports = function(app) {
     moment.locale('sv');
     now = moment().format("dddd D MMM YYYY");
 
-    global.db.collection( global.conf.DB_COLLECTION_POSTS )
-      .findAsync({}, {
-        limit : 3,
-        sort : {
-          date : -1
-        }
-      })
-      .then(function(cursor) {
-        return cursor.toArrayAsync();
-      })
+    getPosts( null, isDynamic )
       .then(function( posts ) {
-        posts.forEach( function( post ) { addPostProperties( post, isDynamic ); } );
         pane = req.params.pane || 'blog';
         pane = pane.toLowerCase();
         req.locals.pane = pane;
