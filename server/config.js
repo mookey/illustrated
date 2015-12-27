@@ -37,9 +37,7 @@ module.exports = function(app) {
 
   if (process.env.NODE_ENV === PROD) {
     name = 'production.json';
-    /*jslint stupid: true */
-    buildRev = JSON.parse(fs.readFileSync(global.env.dist + 'rev-manifest.json', 'utf8'));
-    /*jslint stupid: false */
+    buildRev = require(global.env.dist + 'rev-manifest.json');
     global.env.build = {
       css         : '/dist/' + buildRev['style.css'],
       mainScript  : '/dist/' + buildRev['main.js'],
@@ -70,9 +68,7 @@ module.exports = function(app) {
     req.locals.path       = global.env.build.path;
     next();
   });
-  /*jslint stupid: true */
-  conf = JSON.parse(fs.readFileSync(global.root + '/' + name, 'utf8'));
-  /*jslint stupid: false */
+  conf = require(global.root + '/' + name, 'utf8');
   global.conf = conf;
   setDefaults(app);
 
