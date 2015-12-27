@@ -9,6 +9,9 @@ article {
   @include vendor-prefix("transition", "all 300ms ease");
   margin: 0 0 0 0;
   max-width: 800px;
+  &.dynamic {
+    opacity: 0;
+  }
   .image iframe {
     position: absolute;
     top: 0;

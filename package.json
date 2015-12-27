@@ -4,12 +4,14 @@
   "main": "server.js",
   "repository": "https://github.com/mookey/illustrated",
   "dependencies": {
+    "bluebird": "^3.1.1",
     "compression": "*",
     "express": "*",
     "express-handlebars": "*",
     "express-session": "*",
     "handlebars": "*",
-    "moment": "*"
+    "moment": "*",
+    "mongodb": "^2.1.2"
   },
   "devDependencies": {
     "gulp": "*",
