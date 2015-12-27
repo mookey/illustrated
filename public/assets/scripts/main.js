@@ -346,11 +346,26 @@ this.consi = this.consi || {};
       (function(elem) {
         var image;
         var src;
+        var type;
+        var iframe;
         src = elem.getAttribute('data-image-src');
+        type = elem.getAttribute('data-media-type');
         if (!src) {
           elem.classList.add('hide');
           return;
         }
+
+        if ( type === 'youtube' ) {
+          imageElem.innerHTML = '<iframe width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>';
+          iframe = imageElem.firstChild;
+          iframe.onload = function() {
+            elem.offsetWidth;
+            elem.classList.remove('invisible');
+          }
+          iframe.src = src;
+          return;
+        }
+
         image = new Image();
         image.onload = function() {
           elem.style.backgroundImage = 'url("' + src + '")';

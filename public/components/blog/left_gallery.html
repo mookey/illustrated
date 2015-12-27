@@ -3,7 +3,7 @@
   <header>
     <div class="image-container image-left">
       <div style="position: relative; padding-bottom:{{media.0.aspect}}%">
-        <div class="image invisible" data-image-src="{{media.0.src}}"></div>
+        <div class="image invisible" data-media-type="{{media.0.type}}" data-image-src="{{media.0.src}}"></div>
       </div>
     </div>
     <div>
@@ -23,27 +23,27 @@
     <div>
       <div class="image-container block">
         <div style="position: relative; width:100%; padding-bottom:{{media.1.aspect}}%">
-          <div class="image invisible" data-image-src="{{media.1.src}}"></div>
+          <div class="image invisible" data-media-type="{{media.1.type}}" data-image-src="{{media.1.src}}"></div>
         </div>
       </div>
     </div
     ><div>
       <div class="image-container block">
         <div style="position: relative; width:100%; padding-bottom:{{media.2.aspect}}%">
-          <div class="image invisible" data-image-src="{{media.2.src}}"></div>
+          <div class="image invisible" data-media-type="{{media.2.type}}" data-image-src="{{media.2.src}}"></div>
         </div>
       </div>
   	</div>
   </div>{{#if media.3.src}}<div class="row">
     <div class="image-container block">
       <div style="position: relative; width:100%; padding-bottom:{{media.3.aspect}}%">
-        <div class="image invisible" data-image-src="{{media.3.src}}"></div>
+        <div class="image invisible" data-media-type="{{media.3.type}}" data-image-src="{{media.3.src}}"></div>
       </div>
     </div>
   </div>{{/if}}{{#if media.4.src}}<div class="row">
 		<div class="image-container block">
       <div style="position: relative; width:100%; padding-bottom:{{media.4.aspect}}%">
-        <div class="image invisible" data-image-src="{{media.4.src}}"></div>
+        <div class="image invisible" data-media-type="{{media.4.type}}" data-image-src="{{media.4.src}}"></div>
       </div>
     </div>
   </div>{{/if}}

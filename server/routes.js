@@ -195,6 +195,64 @@ module.exports = function(app) {
     posts.push({
       text    : '<p></p>',
       author  : 'garhammar',
+      date    : new Date(2015, 11, 24),
+      humanDate : '24 dec 2015',
+      header  : 'Julafton',
+      extract : '',
+      template : 'centered_bottom',
+      media   : [
+        {
+          src     : host + 'jul_1_2015.jpg',
+          type    : 'image',
+          view    : 'landscape',
+          width   : 1000,
+          height  : 750
+        },
+        {
+          src     : host + 'jul_2015.jpg',
+          type    : 'image',
+          view    : 'landscape',
+          width   : 1000,
+          height  : 750
+        }
+      ],
+      notes : [
+        {
+          note : 'Well, I\'m pissed an vinigera again, Cause I think that I\'ve lost my best friend'
+        }
+      ]
+    });
+
+
+    posts.push({
+      text    : '<p>Kidnap the Sandy Claws,<br/>beat him with a stick<br/>Lock him for ninety years,<br/>see what makes him tick</p>',
+      author  : 'garhammar',
+      date    : new Date(2015, 11, 23),
+      humanDate : '23 dec 2015',
+      header  : 'Nightmare before Christmas',
+      extract : '',
+      template : 'centered_bottom',
+      media   : [
+        {
+          src     : host + 'jul_2_2015.jpg',
+          type    : 'image',
+          view    : 'landscape',
+          width   : 1000,
+          height  : 750
+        },
+        {
+          src     : 'https://www.youtube.com/embed/Ry7PcYtKPhA',
+          type    : 'youtube',
+          view    : 'landscape',
+          width   : 16,
+          height  : 9
+        }
+      ]
+    });
+
+    posts.push({
+      text    : '<p></p>',
+      author  : 'garhammar',
       date    : new Date(2015, 11, 6),
       humanDate : '6 dec 2015',
       header  : 'Syster och bror. Main man och Dixon',
@@ -206,16 +264,14 @@ module.exports = function(app) {
           type    : 'image',
           view    : 'landscape',
           width   : 800,
-          height  : 600,
-          aspect  : 75
+          height  : 600
         },
         {
           src     : host + 'familja.jpg',
           type    : 'image',
           view    : 'landscape',
           width   : 800,
-          height  : 600,
-          aspect  : 75
+          height  : 600
         }
       ],
       notes : [
@@ -240,24 +296,21 @@ module.exports = function(app) {
           type    : 'image',
           view    : 'portrait',
           width   : 600,
-          height  : 800,
-          aspect  : 136.5
+          height  : 800
         },
         {
           src     : host + 'castle.jpg',
           type    : 'image',
           view    : 'portrait',
 					width   : 600,
-          height  : 800,
-          aspect  : 136.5
+          height  : 800
         },
         {
           src     : host + 'john.jpg',
           type    : 'image',
           view    : 'portrait',
 					width   : 600,
-          height  : 800,
-          aspect  : 136.5
+          height  : 800
         }
       ],
       notes : [
@@ -283,16 +336,14 @@ module.exports = function(app) {
           type    : 'image',
           view    : 'landscape',
           width   : 800,
-          height  : 600,
-          aspect  : 75
+          height  : 600
         },
         {
           src     : host + 'burn.jpg',
           type    : 'image',
           view    : 'landscape',
           width   : 800,
-          height  : 600,
-          aspect  : 75
+          height  : 600
         }
       ],
       notes : [
@@ -318,24 +369,21 @@ module.exports = function(app) {
           type    : 'image',
           view    : 'portrait',
           width   : 800,
-          height  : 1092,
-          aspect  : 136.5
+          height  : 1092
         },
         {
           src     : host + 'pops_main_man.jpg',
           type    : 'image',
           view    : 'portrait',
           width   : 800,
-          height  : 1092,
-          aspect  : 136.5
+          height  : 1092
         },
         {
           src     : host + 'tim_syster.jpg',
           type    : 'image',
           view    : 'portrait',
           width   : 800,
-          height  : 1092,
-          aspect  : 136.5
+          height  : 1092
         }
       ],
       notes : [
@@ -360,19 +408,18 @@ module.exports = function(app) {
           type    : 'image',
           view    : 'portrait',
           width   : 800,
-          height  : 1092,
-          aspect  : 136.5
+          height  : 1092
         },
         {
           src     : host + 'mom_pops_main_man.jpg',
           type    : 'image',
           view    : 'landscape',
           width   : 800,
-          height  : 600,
-          aspect  : 75
+          height  : 600
         }
       ]
     });
+
 
     posts.forEach( addPostProperties );
 
@@ -399,6 +446,11 @@ module.exports = function(app) {
 
   function addPostProperties( post ) {
     post.url = '/blog/' + moment( post.date ).format('YYYY_MM_DD');
+
+    post.media.forEach(function( media ) {
+      media.aspect = 100 * (media.height / media.width);
+    });
+
     if ( post.template === 'left_bottom' ) {
       post.isLeftBottom = true;
     }
