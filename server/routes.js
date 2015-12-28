@@ -2,7 +2,8 @@
 
 var moment = require('moment');
 var handlebars = require('handlebars');
-
+var multer  = require('multer');
+var upload = multer();
 
 module.exports = function(app) {
 
@@ -56,8 +57,12 @@ module.exports = function(app) {
       });
   });
 
+  app.post('/admin', upload.array(), function( req, res ) {
+    console.log( req.body );
+    res.sendStatus(200);
+  });
+
   app.get('/:pane?', function( req, res ) {
-    var host ='images/';
     var isDynamic = false;
     var pane;
     var now;
@@ -72,6 +77,11 @@ module.exports = function(app) {
         req.locals.pane = pane;
         req.locals.posts = posts;
         req.locals.now = now;
+        if ( pane === 'admin' ) {
+          req.locals.layout = false;
+          res.render('admin', req.locals);
+          return;
+        }
         r(req, res, req.locals);
       }).catch(function(err) {
         console.log(err);
@@ -84,6 +94,7 @@ module.exports = function(app) {
   function addPostProperties( post, isDynamic ) {
     post.url = '/blog/' + moment( post.date ).format('YYYY_MM_DD');
     post.isDynamic = isDynamic;
+    post.id = post._id;
     post.media.forEach(function( media ) {
       media.aspect = 100 * (media.height / media.width);
     });

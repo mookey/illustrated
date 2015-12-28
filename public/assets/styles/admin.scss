@@ -1,0 +1,43 @@
+@import "normalize.scss";
+@import "base.scss";
+@import "mixins.scss";
+@import "media.scss";
+@import "article.scss";
+@import "cv.scss";
+@import "oland.scss";
+
+.admin {
+  background-color: #BD6767;
+  * {
+    box-sizing: border-box;
+  }
+  .status,
+  .post {
+    margin: 100px;
+    box-shadow: 0 0 20px 0 #000;
+    background-color: #fff;
+    padding: 20px;
+    input,
+    textarea {
+      border: 1px solid #bdbdbd;
+      padding: 10px;
+      margin: 0 0 10px 0;
+      width: 100%;
+      &.button {
+        background-color: #A8E2BF;
+        border: 1px solid #85D285;
+        transition: all 300ms ease;
+        &:hover {
+          background-color: #8CC5A3;
+          border: 1px solid #5C9E5C;
+        }
+      }
+    }
+    .media {
+      padding: 30px;
+      background-color: #f7f7f7;
+      border: 1px solid #bdbdbd;
+      margin: 0 0 10px 0;
+    }
+  }
+}

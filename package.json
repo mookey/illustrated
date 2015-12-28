@@ -5,13 +5,15 @@
   "repository": "https://github.com/mookey/illustrated",
   "dependencies": {
     "bluebird": "^3.1.1",
+    "body-parser": "^1.14.2",
     "compression": "*",
     "express": "*",
     "express-handlebars": "*",
     "express-session": "*",
     "handlebars": "*",
     "moment": "*",
-    "mongodb": "^2.1.2"
+    "mongodb": "^2.1.2",
+    "multer": "^1.1.0"
   },
   "devDependencies": {
     "gulp": "*",

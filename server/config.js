@@ -6,6 +6,7 @@ var handlebars    = require('handlebars');
 var compress      = require('compression')();
 var session       = require('express-session');
 var fs            = require('fs');
+var bodyParser    = require('body-parser');
 var PROD          = 'production';
 var DEV           = 'development';
 var conf;
@@ -23,6 +24,8 @@ module.exports = function(app) {
       app.enable('strict routing');
       app.enable('case sensitive routing');
       app.use(compress);
+      app.use(bodyParser.json());
+      app.use(bodyParser.urlencoded({ extended: true }));
       app.set('views', global.env.components);
       hbs = exphbs.create({
         handlebars    : handlebars,
@@ -40,6 +43,8 @@ module.exports = function(app) {
     buildRev = require(global.env.dist + 'rev-manifest.json');
     global.env.build = {
       css         : '/dist/' + buildRev['style.css'],
+      adminStyles : '/dist/styles/admin.css',
+      adminScript : '/dist/js/admin.js',
       mainScript  : '/dist/' + buildRev['main.js'],
       blogScript  : '/dist/' + buildRev['blog.js'],
       cvScript    : '/dist/' + buildRev['cv.js'],
@@ -50,6 +55,8 @@ module.exports = function(app) {
     name = 'development.json';
     global.env.build = {
       css         : '/assets/styles/style.css',
+      adminStyles : '/assets/styles/admin.css',
+      adminScript : '/assets/scripts/admin.js',
       mainScript  : '/assets/scripts/main.js',
       blogScript  : '/components/blog/blog.js',
       cvScript    : '/components/cv/cv.js',
@@ -65,6 +72,8 @@ module.exports = function(app) {
     req.locals.cvScript   = global.env.build.cvScript;
     req.locals.templates  = global.env.build.templates;
     req.locals.css        = global.env.build.css;
+    req.locals.adminStyles = global.env.build.adminStyles;
+    req.locals.adminScript = global.env.build.adminScript;
     req.locals.path       = global.env.build.path;
     next();
   });

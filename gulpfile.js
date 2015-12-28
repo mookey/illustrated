@@ -20,7 +20,7 @@ gulp.task('sass', function () {
 
 
 gulp.task('scripts', function() {
-  return gulp.src(['./public/assets/scripts/main.js', './public/components/**/*.js'])
+  return gulp.src(['./public/assets/scripts/main.js', './public/assets/scripts/admin.js', './public/components/**/*.js'])
     .pipe(uglify())
     .pipe(gulp.dest('./public/dist/js'));
 });
@@ -31,7 +31,7 @@ gulp.task('templates', shell.task([
 
 
 gulp.task('compress', function() {
-  return gulp.src('./public/assets/styles/style.css')
+  return gulp.src(['./public/assets/styles/style.css', './public/assets/styles/admin.css'])
     .pipe(minifyCss())
     .pipe(gulp.dest('./public/dist/styles'));
 });

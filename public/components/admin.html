@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+      <title>Garhammar</title>
+      <meta name="description" content="Staffan Garhammar"/>
+      <meta name="google" content="notranslate" />
+      <meta name="keywords" content="Staffan Garhammar cv blog biografi citat" />
+      <link href="https://fonts.googleapis.com/css?family=Wire+One|Muli|Oswald:300|Abril+Fatface" rel="stylesheet" type="text/css">
+      <link href="{{ adminStyles }}" rel="stylesheet" type="text/css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/basket.js/0.5.2/basket.full.min.js"></script>
+      <script>
+        window.consi = {};
+        consi.activeTab = '{{ pane }}';
+      </script>
+      <script src="{{ adminScript }}"></script>
+      <link rel="shortcut icon" href="images/favicon.ico">
+  </head>
+  <body class="admin">
+    <div class="status hide"></div>
+    <form class="post">
+      <input name="humanDate" placeholder="YYYY-MM-DD"/><br/>
+      <input name="header" placeholder="header"/><br/>
+      <input name="author" placeholder="author"/><br/>
+      <input name="extract" placeholder="extract"/><br/>
+      <input name="template" placeholder="template"/><br/>
+      <textarea name="text" placeholder="text"/><p></p></textarea><br/>
+      <div class="media">
+        <input name="type[]" placeholder="type" value="{{type}}"/><br/>
+        <input name="src[]" placeholder="src" value="{{src}}"/><br/>
+        <input name="width[]" placeholder="width" value="{{width}}"/><br/>
+        <input name="height[]" placeholder="height" value="{{height}}"/><br/>
+        <input name="view[]" placeholder="view" value="{{view}}"/><br/>
+      </div>
+      <div class="media">
+        <input name="type[]" placeholder="type" value="{{type}}"/><br/>
+        <input name="src[]" placeholder="src" value="{{src}}"/><br/>
+        <input name="width[]" placeholder="width" value="{{width}}"/><br/>
+        <input name="height[]" placeholder="height" value="{{height}}"/><br/>
+        <input name="view[]" placeholder="view" value="{{view}}"/><br/>
+      </div>
+      <div class="media">
+        <input name="type[]" placeholder="type" value="{{type}}"/><br/>
+        <input name="src[]" placeholder="src" value="{{src}}"/><br/>
+        <input name="width[]" placeholder="width" value="{{width}}"/><br/>
+        <input name="height[]" placeholder="height" value="{{height}}"/><br/>
+        <input name="view[]" placeholder="view" value="{{view}}"/><br/>
+      </div>
+      <input class="button" type="submit" value="new"/>
+    </form>
+    {{#each posts}}
+      <form class="post">
+        <input name="humanDate" placeholder="YYYY-MM-DD" value="{{humanDate}}"/><br/>
+        <input name="header" placeholder="header" value="{{header}}"/><br/>
+        <input name="author" placeholder="author" value="{{author}}"/><br/>
+        <input name="extract" placeholder="extract" value="{{extract}}"/><br/>
+        <input name="template" placeholder="template" value="{{template}}"/><br/>
+        <textarea name="text" placeholder="text">{{{text}}}</textarea><br/>
+        {{#each this.media}}
+          <div class="media">
+            <input name="type" placeholder="type" value="{{type}}"/><br/>
+            <input name="src" placeholder="src" value="{{src}}"/><br/>
+            <input name="width" placeholder="width" value="{{width}}"/><br/>
+            <input name="height" placeholder="height" value="{{height}}"/><br/>
+            <input name="view" placeholder="view" value="{{view}}"/><br/>
+          </div>
+        {{/each}}
+        <input type="hidden" name="id" value="{{id}}"/>
+        <input class="button" type="submit" value="update"/>
+      </form>
+    {{/each}}
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.runtime.min.js"></script>
+  </body>
+</html>
