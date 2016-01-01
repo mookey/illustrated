@@ -1,5 +1,7 @@
 {
   "name": "garhammar",
+  "description": "It's all fucked up",
+  "license": "MIT",
   "version": "1.0.0",
   "main": "server.js",
   "repository": "https://github.com/mookey/illustrated",
@@ -11,6 +13,7 @@
     "express-handlebars": "*",
     "express-session": "*",
     "handlebars": "*",
+    "kerberos": "0.0.17",
     "moment": "*",
     "mongodb": "^2.1.2",
     "multer": "^1.1.0"
