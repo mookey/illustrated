@@ -18,20 +18,33 @@
     background-color: #fff;
     padding: 20px;
     input,
+    select,
     textarea {
       border: 1px solid #bdbdbd;
+      background-color: #fff;
       padding: 10px;
       margin: 0 0 10px 0;
-      width: 100%;
+      width: 80%;
+      height: 38px;
       &.button {
         background-color: #A8E2BF;
         border: 1px solid #85D285;
         transition: all 300ms ease;
+        width: 100%;
         &:hover {
           background-color: #8CC5A3;
           border: 1px solid #5C9E5C;
         }
       }
+    }
+    textarea {
+      height: 100px;
+    }
+    .label {
+      width: 20%;
+      vertical-align: top;
+      margin-top: 10px;
+      display: inline-block;
     }
     .media {
       padding: 30px;

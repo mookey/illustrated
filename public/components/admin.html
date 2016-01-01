@@ -20,54 +20,131 @@
   </head>
   <body class="admin">
     <div class="status hide"></div>
-    <form class="post">
-      <input name="humanDate" placeholder="YYYY-MM-DD"/><br/>
-      <input name="header" placeholder="header"/><br/>
-      <input name="author" placeholder="author"/><br/>
-      <input name="extract" placeholder="extract"/><br/>
-      <input name="template" placeholder="template"/><br/>
-      <textarea name="text" placeholder="text"/><p></p></textarea><br/>
-      <div class="media">
-        <input name="type[]" placeholder="type" value="{{type}}"/><br/>
-        <input name="src[]" placeholder="src" value="{{src}}"/><br/>
-        <input name="width[]" placeholder="width" value="{{width}}"/><br/>
-        <input name="height[]" placeholder="height" value="{{height}}"/><br/>
-        <input name="view[]" placeholder="view" value="{{view}}"/><br/>
+    <form enctype="multipart/form-data" method="post" class="post">
+      <div>
+        <span class="label">Published:</span
+        ><input type="checkbox" name="isPublished" {{#if isPublished}}checked="checked"{{/if}}/>
+      </div>
+      <div>
+        <span class="label">Date:</span
+        ><input type="date" name="date" placeholder="YYYY-MM-DD" value="{{ date }}"/>
+      </div>
+      <div>
+        <span class="label">Header:</span
+        ><input name="header" placeholder="header"/>
+      </div>
+      <div>
+        <span class="label">Author:</span
+        ><input name="author" placeholder="author" value="Garhammar"/>
+      </div>
+      <div>
+        <span class="label">Extract:</span
+        ><input name="extract" placeholder="extract"/>
+      </div>
+      <div>
+        <span class="label">Template:</span
+        ><select name="template">
+          <option value="centered_bottom">centered_bottom</option>
+          <option value="left_bottom">left_bottom</option>
+          <option value="left_gallery">left_gallery</option>
+        </select>
+      </div>
+      <div>
+        <span class="label">Text:</span
+        ><textarea name="text" placeholder="text"/><p></p></textarea>
       </div>
       <div class="media">
-        <input name="type[]" placeholder="type" value="{{type}}"/><br/>
-        <input name="src[]" placeholder="src" value="{{src}}"/><br/>
-        <input name="width[]" placeholder="width" value="{{width}}"/><br/>
-        <input name="height[]" placeholder="height" value="{{height}}"/><br/>
-        <input name="view[]" placeholder="view" value="{{view}}"/><br/>
+        <span class="label">Typ:</span
+        ><select name="type[]">
+          <option value="image">image</option>
+          <option value="youtube">youtube</option>
+        </select><br/>
+        <span class="label">Src:</span><input type="file" name="src[]" placeholder="src" value=""/><br/>
+        <span class="label">Bredd:</span><input name="width[]" placeholder="width" value="1000"/><br/>
+        <span class="label">Höjd:</span><input name="height[]" placeholder="height" value="750"/><br/>
       </div>
       <div class="media">
-        <input name="type[]" placeholder="type" value="{{type}}"/><br/>
-        <input name="src[]" placeholder="src" value="{{src}}"/><br/>
-        <input name="width[]" placeholder="width" value="{{width}}"/><br/>
-        <input name="height[]" placeholder="height" value="{{height}}"/><br/>
-        <input name="view[]" placeholder="view" value="{{view}}"/><br/>
+        <span class="label">Typ:</span
+        ><select name="type[]">
+          <option value="image">image</option>
+          <option value="youtube">youtube</option>
+        </select><br/>
+        <span class="label">Src:</span><input type="file" name="src[]" placeholder="src" value=""/><br/>
+        <span class="label">Bredd:</span><input name="width[]" placeholder="width" value="1000"/><br/>
+        <span class="label">Höjd:</span><input name="height[]" placeholder="height" value="750"/><br/>
+      </div>
+      <div class="media">
+        <span class="label">Typ:</span
+        ><select name="type[]">
+          <option value="image">image</option>
+          <option value="youtube">youtube</option>
+        </select><br/>
+        <span class="label">Src:</span><input type="file" name="src[]" placeholder="src" value=""/><br/>
+        <span class="label">Bredd:</span><input name="width[]" placeholder="width" value="1000"/><br/>
+        <span class="label">Höjd:</span><input name="height[]" placeholder="height" value="750"/><br/>
       </div>
       <input class="button" type="submit" value="new"/>
+      <input type="hidden" name="token" value="fucker"/>
     </form>
     {{#each posts}}
-      <form class="post">
-        <input name="humanDate" placeholder="YYYY-MM-DD" value="{{humanDate}}"/><br/>
-        <input name="header" placeholder="header" value="{{header}}"/><br/>
-        <input name="author" placeholder="author" value="{{author}}"/><br/>
-        <input name="extract" placeholder="extract" value="{{extract}}"/><br/>
-        <input name="template" placeholder="template" value="{{template}}"/><br/>
-        <textarea name="text" placeholder="text">{{{text}}}</textarea><br/>
+      <form enctype="multipart/form-data" method="post" class="post">
+        <div>
+          <span class="label">Published:</span
+          ><input type="checkbox" name="isPublished" {{#if isPublished}}checked="checked"{{/if}}/>
+        </div>
+        <div>
+          <span class="label">Date:</span
+          ><input name="date" placeholder="YYYY-MM-DD" type="date" value="{{date}}"/>
+        </div>
+        <div>
+          <span class="label">Header:</span
+          ><input name="header" placeholder="header" value="{{header}}"/>
+        </div>
+        <div>
+          <span class="label">Author:</span
+          ><input name="author" placeholder="author" value="{{author}}"/>
+        </div>
+        <div>
+          <span class="label">Extract:</span
+          ><input name="extract" placeholder="extract" value="{{extract}}"/>
+        </div>
+        <div>
+          <span class="label">Template:</span
+          ><select name="template">
+            <option value="centered_bottom" {{#if isCenteredBottom}}selected="selected"{{/if}}>centered_bottom</option>
+            <option value="left_bottom" {{#if isLeftBottom}}selected="selected"{{/if}}>left_bottom</option>
+            <option value="left_gallery" {{#if isLeftGallery}}selected="selected"{{/if}}>left_gallery</option>
+          </select>
+        </div>
+        <div>
+          <span class="label">Text:</span
+          ><textarea name="text" placeholder="text"/>{{{text}}}</textarea>
+        </div>
         {{#each this.media}}
           <div class="media">
-            <input name="type" placeholder="type" value="{{type}}"/><br/>
-            <input name="src" placeholder="src" value="{{src}}"/><br/>
-            <input name="width" placeholder="width" value="{{width}}"/><br/>
-            <input name="height" placeholder="height" value="{{height}}"/><br/>
-            <input name="view" placeholder="view" value="{{view}}"/><br/>
+            <div>
+              <span class="label">Typ:</span
+              ><select name="type[]">
+                <option value="image" {{#if isImage}}selected="selected"{{/if}}>image</option>
+                <option value="youtube" {{#if isYoutube}}selected="selected"{{/if}}>youtube</option>
+              </select>
+            </div>
+            <div>
+              <span class="label">Src:</span
+              ><input type="file" name="src[]" placeholder="src" value="{{src}}"/>
+            </div>
+            <div>
+              <span class="label">Bredd:</span
+              ><input name="width[]" placeholder="width" value="{{width}}"/>
+            </div>
+            <div>
+              <span class="label">Höjd:</span
+              ><input name="height[]" placeholder="height" value="{{height}}"/>
+            </div>
           </div>
         {{/each}}
         <input type="hidden" name="id" value="{{id}}"/>
+        <input type="hidden" name="token" value="fucker"/>
         <input class="button" type="submit" value="update"/>
       </form>
     {{/each}}

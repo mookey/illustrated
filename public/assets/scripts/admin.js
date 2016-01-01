@@ -4,6 +4,7 @@ this.admin = this.admin || {};
 (function(c) {
   'use strict';
   var consi = c;
+  return;
 
   function load() {
     var forms = document.querySelectorAll('form');
