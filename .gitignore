@@ -13,3 +13,5 @@ init.sh
 clean.sh
 deploy.sh
 dump.sh
+robots.txt
+sitemap.xml
