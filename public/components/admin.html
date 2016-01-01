@@ -134,6 +134,9 @@
               ><input type="file" name="src[]" placeholder="src" value="{{src}}"/>
             </div>
             <div>
+              {{#if src}}<span class="label"></span>{{src}}<br/>{{/if}}
+            </div>
+            <div class="top-10">
               <span class="label">Bredd:</span
               ><input name="width[]" placeholder="width" value="{{width}}"/>
             </div>
