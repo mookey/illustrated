@@ -1,7 +1,6 @@
 'use strict';
 
 var fs = require('fs');
-var request = require('request');
 var moment = require('moment');
 var handlebars = require('handlebars');
 var multer = require('multer');
