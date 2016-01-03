@@ -4,6 +4,7 @@ var fs = require('fs');
 var moment = require('moment');
 var handlebars = require('handlebars');
 var db = require(global.env.server + 'db.js');
+var NUMBER_OF_POSTS_PER_REQUEST = 5;
 
 module.exports = function(app) {
 
@@ -25,7 +26,7 @@ module.exports = function(app) {
     var date = moment( req.params.date, 'YYYY_MM_DD').toDate();
     var isDynamic = true;
     var limits = {
-      limit : 3,
+      limit : NUMBER_OF_POSTS_PER_REQUEST,
       sort : {
         date : -1
       }
@@ -55,7 +56,7 @@ module.exports = function(app) {
     now = moment().format("dddd D MMM YYYY");
 
     var limits = {
-      limit : 3,
+      limit : NUMBER_OF_POSTS_PER_REQUEST,
       sort : {
         date : -1
       }

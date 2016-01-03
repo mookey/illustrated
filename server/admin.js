@@ -8,6 +8,10 @@ module.exports = function(app) {
 
   app.post('/admin', db.upload.array('src[]', 3), function( req, res ) {
 
+    if ( req.body.username !== global.conf.username || req.body.password !== global.conf.password ) {
+      res.sendStatus( 401 );
+      return;
+    }
 
     var post = {
       header : req.body.header,
