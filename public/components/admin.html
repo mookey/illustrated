@@ -20,7 +20,15 @@
   </head>
   <body class="admin">
     <div class="status hide"></div>
-    <form enctype="multipart/form-data" method="post" class="post">
+    <div class="post">
+      <div>
+        <div class="label">Username:</div><input type="text" name="username" placeholder="Username"/>
+      </div>
+      <div>
+        <div class="label">Password:</div><input type="password" name="password" placeholder="Password"/>
+      </div>
+    </div>
+    <form enctype="multipart/form-data" method="post" class="post top-10">
       <div>
         <span class="label">Published:</span
         ><input type="checkbox" name="isPublished" {{#if isPublished}}checked="checked"{{/if}}/>

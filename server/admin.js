@@ -8,10 +8,6 @@ module.exports = function(app) {
 
   app.post('/admin', db.upload.array('src[]', 3), function( req, res ) {
 
-    // if ( req.body.token !== 'fuckrrr' ) {
-    //   res.redirect('/admin');
-    //   return;
-    // }
 
     var post = {
       header : req.body.header,
@@ -37,14 +33,14 @@ module.exports = function(app) {
 
     if ( req.body.id ) {
       post.id = req.body.id;
-      updatePost( post );
+      updatePost( post, res );
     } else {
-      insertPost( post );
+      insertPost( post, res );
     }
 
   });
 
-  function updatePost( post ) {
+  function updatePost( post, res ) {
     db.updatePost( post )
       .then(function() {
         res.redirect('/admin');
@@ -54,7 +50,7 @@ module.exports = function(app) {
       });
   };
 
-  function insertPost( post ) {
+  function insertPost( post, res ) {
     db.insertPost( post )
       .then(function() {
         res.redirect('/admin');

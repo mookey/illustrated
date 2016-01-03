@@ -18,6 +18,9 @@ this.admin = this.admin || {};
         var oData = new FormData(this);
         var statusElem = document.querySelector('.status');
 
+        oData.append('username', document.getElementsByName('username')[0].value);
+        oData.append('password', document.getElementsByName('password')[0].value);
+
         var oReq = new XMLHttpRequest();
         oReq.open('POST', '/admin', true);
         oReq.onload = function(oEvent) {
