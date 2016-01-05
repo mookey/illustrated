@@ -12,10 +12,13 @@ article {
   &.dynamic {
     opacity: 0;
   }
+  .image video,
   .image iframe {
     position: absolute;
     top: 0;
     left: 0;
+    width: 100%;
+    cursor: pointer;
   }
   @include tablet {
     color: #555;

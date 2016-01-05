@@ -46,7 +46,19 @@ window.consi.blog = window.consi.blog || {};
     front.classList.add( 'init' );
 
     article.addEventListener('click', function( ev ) {
+
+      var source = event.target || event.srcElement;
       ev.preventDefault();
+
+      if ( source.tagName.toLowerCase() === 'video' ) {
+        if ( source.paused ) {
+          source.play();
+        } else {
+          source.pause();
+        }
+        return;
+      }
+
       onTrigger( this );
     }, false);
 
@@ -59,7 +71,7 @@ window.consi.blog = window.consi.blog || {};
 
   function onTrigger( article ) {
       var back = article.querySelector('.back');
-      if (!back.classList.contains('init')) {
+      if ( !back.classList.contains('init') ) {
         setTimeout(function() {
           consi.loadBackgroundImages(back);
         }, 400);

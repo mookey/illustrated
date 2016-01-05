@@ -4,7 +4,6 @@ this.admin = this.admin || {};
 (function(c) {
   'use strict';
   var consi = c;
-  return;
 
   function load() {
     var forms = document.querySelectorAll('form');
@@ -13,7 +12,9 @@ this.admin = this.admin || {};
     var form;
     for ( i = 0; i < len; i++ ) {
       form = forms[i];
-      form.addEventListener('submit', function(ev) {
+      form.addEventListener('submit', function( ev ) {
+
+        ev.preventDefault();
 
         var oData = new FormData(this);
         var statusElem = document.querySelector('.status');
@@ -33,7 +34,7 @@ this.admin = this.admin || {};
         };
 
         oReq.send(oData);
-        ev.preventDefault();
+
 
       }, false);
     }

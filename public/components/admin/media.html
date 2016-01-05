@@ -1,0 +1,33 @@
+<div class="media">
+  <div>
+    <span class="label">Typ:</span
+    ><select name="type[]">
+      <option value="image" {{#if isImage}}selected="selected"{{/if}}>image</option>
+      <option value="youtube" {{#if isYoutube}}selected="selected"{{/if}}>youtube</option>
+      <option value="video" {{#if isVideo}}selected="selected"{{/if}}>video</option>
+    </select>
+  </div>
+  <div>
+    <span class="label">Src:</span
+    ><input type="file" name="{{srcName}}[]" placeholder="src" value=""/>
+  </div>
+  <div>
+    {{#if src}}<span class="label"></span>{{src}}<br/>{{/if}}
+  </div>
+  <div class="top-10">
+    <span class="label">Src:</span
+    ><input type="file" name="{{srcName}}[]" placeholder="src" value=""/>
+  </div>
+  <div>
+    <span class="label">Src:</span
+    ><input type="file" name="{{srcName}}[]" placeholder="src" value=""/>
+  </div>
+  <div class="top-10">
+    <span class="label">Bredd:</span
+    ><input name="width[]" placeholder="width" value="{{width}}"/>
+  </div>
+  <div>
+    <span class="label">Höjd:</span
+    ><input name="height[]" placeholder="height" value="{{height}}"/>
+  </div>
+</div>

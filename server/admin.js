@@ -6,7 +6,7 @@ var db = require(global.env.server + 'db.js');
 
 module.exports = function(app) {
 
-  app.post('/admin', db.upload.array('src[]', 3), function( req, res ) {
+  app.post('/admin', db.upload.fields([{ name: 'first[]', maxCount: 3 }, { name: 'second[]', maxCount: 3 }, { name: 'third[]', maxCount: 3 } ]), function( req, res ) {
 
     if ( req.body.username !== global.conf.username || req.body.password !== global.conf.password ) {
       res.sendStatus( 401 );
@@ -24,16 +24,9 @@ module.exports = function(app) {
       media : []
     };
 
-    var i = 0;
-    var len = req.files.length;
-    for ( i = 0; i < len; i++ ) {
-      post.media.push({
-        src : 'images/' + req.files[i].originalname,
-        type : req.body.type[i],
-        width : req.body.width[i],
-        height : req.body.height[i]
-      });
-    }
+    addFile( 0, post, req );
+    addFile( 1, post, req );
+    addFile( 2, post, req );
 
     if ( req.body.id ) {
       post.id = req.body.id;
@@ -44,10 +37,42 @@ module.exports = function(app) {
 
   });
 
+  function addFile( number, post, req ) {
+    var file;
+    var src;
+    var type;
+    var names;
+    if ( number === 0 ) {
+      file = req.files['first[]'] && req.files['first[]'][0];
+    } else if ( number === 1 ) {
+      file = req.files['second[]'] && req.files['second[]'][0];
+    } else if ( number === 2 ) {
+      file = req.files['third[]'] && req.files['third[]'][0];
+    }
+
+    if ( file ) {
+      type = req.body.type[ number ];
+      if ( type === 'video' ) {
+        names = file.originalname.split('.');
+        names.pop();
+        src = names.join('');
+      } else {
+        src = file.originalname;
+      }
+
+      post.media.push({
+        src : 'images/' + src,
+        type : req.body.type[ number ],
+        width : req.body.width[ number ],
+        height : req.body.height[ number ]
+      });
+    }
+  }
+
   function updatePost( post, res ) {
     db.updatePost( post )
       .then(function() {
-        res.redirect('/admin');
+        res.sendStatus( 200 );
       })
       .catch(function() {
         res.sendStatus( 500 );
@@ -57,7 +82,7 @@ module.exports = function(app) {
   function insertPost( post, res ) {
     db.insertPost( post )
       .then(function() {
-        res.redirect('/admin');
+        res.sendStatus( 200 );
       })
       .catch(function() {
         res.sendStatus( 500 );
@@ -68,6 +93,7 @@ module.exports = function(app) {
   app.get('/admin', function( req, res ) {
     var pane;
     var now;
+
 
     moment.locale('sv');
     now = moment().format('D MMM YYYY');
@@ -80,22 +106,6 @@ module.exports = function(app) {
 
     db.getPosts( {}, limits, false )
       .then(function( posts ) {
-        posts.forEach(function(post) {
-          post.media.forEach(function(media) {
-            if (media.type === 'image') {
-              media.isImage = true;
-            }
-            if (media.type === 'youtube') {
-              media.isYoutube = true;
-            }
-            if (media.view === 'landscape') {
-              media.isLandscape = true;
-            }
-            if (media.view === 'portrait') {
-              media.isPortrait = true;
-            }
-          });
-        });
         req.locals.posts = posts;
         req.locals.now = now;
         req.locals.layout = false;

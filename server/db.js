@@ -59,9 +59,31 @@ function addPostProperties( post, isDynamic ) {
   post.date = d.format('YYYY-MM-DD')
   post.isDynamic = isDynamic;
   post.id = post._id;
-  post.media.forEach(function( media ) {
+
+  var i = 0;
+  var len = post.media.length;
+  var media;
+  for ( i = 0; i < len; i++ ) {
+    media = post.media[ i ];
     media.aspect = 100 * (media.height / media.width);
-  });
+    if ( media.type === 'video' ) {
+      media.isVideo = true;
+    }
+    if (media.type === 'image') {
+      media.isImage = true;
+    }
+    if (media.type === 'youtube') {
+      media.isYoutube = true;
+    }
+    if ( i === 0 ) {
+      media.srcName = 'first';
+    } else if ( i === 1) {
+      media.srcName = 'second';
+    } else if ( i === 2) {
+      media.srcName = 'third';
+    }
+  }
+
 
   if ( post.template === 'left_bottom' ) {
     post.isLeftBottom = true;
@@ -72,6 +94,7 @@ function addPostProperties( post, isDynamic ) {
   if ( post.template === 'centered_bottom' ) {
     post.isCenteredBottom = true;
   }
+
 }
 
 module.exports = pub;
