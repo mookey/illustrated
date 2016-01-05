@@ -47,7 +47,7 @@ window.consi.blog = window.consi.blog || {};
 
     article.addEventListener('click', function( ev ) {
 
-      var source = event.target || event.srcElement;
+      var source = ev.target || ev.srcElement;
       ev.preventDefault();
 
       if ( source.tagName.toLowerCase() === 'video' ) {
