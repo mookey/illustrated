@@ -38,6 +38,50 @@ this.admin = this.admin || {};
 
       }, false);
     }
+    var selects = document.querySelectorAll( 'select' );
+    i = 0;
+    len = selects.length;
+    for ( i = 0; i < len; i++) {
+      addSelectListener( selects[i] );
+    }
+  }
+
+  function getParentByClass( element, cls ) {
+    while ( element ) {
+      if ( element.classList && element.classList.contains( cls ) ) {
+        return element;
+      }
+      element = element.parentNode;
+    }
+    return false;
+  };
+
+  function addSelectListener( elem ) {
+    elem.addEventListener( 'change', function( ev ) {
+      var form = getParentByClass( this, 'media' );
+      var hideSelector;
+      var showSelector;
+      var elementsToHide;
+      var elementsToShow;
+      if ( this.value === 'video') {
+        hideSelector = '.image', '.youtube';
+        showSelector = '.video';
+      } else if ( this.value === 'image') {
+        hideSelector = '.video, .youtube';
+        showSelector = '.image';
+      } else {
+        hideSelector = '.video, .image';
+        showSelector = '.youtube';
+      }
+      elementsToHide = Array.prototype.slice.call( form.querySelectorAll( hideSelector ), 0);
+      elementsToHide.forEach( function( el ) {
+        el.classList.add( 'hide' );
+      });
+      elementsToShow = Array.prototype.slice.call( form.querySelectorAll( showSelector ), 0);
+      elementsToShow.forEach( function( el ) {
+        el.classList.remove( 'hide' );
+      });
+    }, false)
   }
 
 

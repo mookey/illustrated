@@ -8,21 +8,26 @@
     </select>
   </div>
   <div>
-    <span class="label">Src:</span
-    ><input type="file" name="{{srcName}}[]" placeholder="src" value=""/>
+    {{#if src}}<span class="label">Current src:</span>{{src}}{{/if}}
   </div>
+
+  <div class="video {{#unless isVideo}}hide{{/unless}} top-20">
+    <span class="label">Webm:</span><input type="file" name="{{srcName}}[]" placeholder="src" value=""/>
+  </div>
+  <div class="video {{#unless isVideo}}hide{{/unless}}">
+    <span class="label">Mp4:</span><input type="file" name="{{srcName}}[]" placeholder="src" value=""/>
+  </div>
+  <div class="video {{#unless isVideo}}hide{{/unless}}">
+    <span class="label">Ogv:</span><input type="file" name="{{srcName}}[]" placeholder="src" value=""/>
+  </div>
+  <div class="image {{#unless isImage}}hide{{/unless}}">
+    <span class="label">Image:</span><input type="file" name="{{srcName}}[]" placeholder="src" value=""/>
+  </div>
+  <div class="youtube {{#unless isYoutube}}hide{{/unless}}">
+    <span class="label">Youtube:</span><input type="text" name="youtube[]" placeholder="src" value=""/>
+  </div>
+
   <div>
-    {{#if src}}<span class="label"></span>{{src}}<br/>{{/if}}
-  </div>
-  <div class="top-10">
-    <span class="label">Src:</span
-    ><input type="file" name="{{srcName}}[]" placeholder="src" value=""/>
-  </div>
-  <div>
-    <span class="label">Src:</span
-    ><input type="file" name="{{srcName}}[]" placeholder="src" value=""/>
-  </div>
-  <div class="top-10">
     <span class="label">Bredd:</span
     ><input name="width[]" placeholder="width" value="{{width}}"/>
   </div>

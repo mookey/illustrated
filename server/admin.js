@@ -24,6 +24,8 @@ module.exports = function(app) {
       media : []
     };
 
+
+
     addFile( 0, post, req );
     addFile( 1, post, req );
     addFile( 2, post, req );
@@ -38,10 +40,25 @@ module.exports = function(app) {
   });
 
   function addFile( number, post, req ) {
+    var type = req.body.type[ number ];
     var file;
     var src;
-    var type;
     var names;
+
+    if ( type === 'youtube' ) {
+      if ( !req.body.youtube[ number] ) {
+        return;
+      }
+      post.media.push({
+        src : req.body.youtube[ number],
+        type : req.body.type[ number ],
+        width : req.body.width[ number ],
+        height : req.body.height[ number ]
+      });
+      return;
+    }
+
+
     if ( number === 0 ) {
       file = req.files['first[]'] && req.files['first[]'][0];
     } else if ( number === 1 ) {
@@ -51,7 +68,6 @@ module.exports = function(app) {
     }
 
     if ( file ) {
-      type = req.body.type[ number ];
       if ( type === 'video' ) {
         names = file.originalname.split('.');
         names.pop();
