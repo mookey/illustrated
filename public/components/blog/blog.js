@@ -49,7 +49,7 @@ window.consi.blog = window.consi.blog || {};
 
       var source = ev.target || ev.srcElement;
 
-      if ( source.tagName.toLowerCase() === 'a' ) {
+      if ( article.classList.contains('active') && source.tagName.toLowerCase() === 'a' ) {
         return;
       }
 
