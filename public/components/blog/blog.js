@@ -48,6 +48,11 @@ window.consi.blog = window.consi.blog || {};
     article.addEventListener('click', function( ev ) {
 
       var source = ev.target || ev.srcElement;
+
+      if ( source.tagName.toLowerCase() === 'a' ) {
+        return;
+      }
+
       ev.preventDefault();
 
       if ( source.tagName.toLowerCase() === 'video' ) {
