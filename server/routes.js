@@ -46,6 +46,9 @@ module.exports = function(app) {
       });
   });
 
+  app.all('/lc', function(req, res) {
+    res.redirect('http://109.74.9.1:3011/');
+  });
 
   app.get('/:pane?', function( req, res ) {
     var isDynamic = false;
